@@ -1,6 +1,7 @@
 package com.synarc.app.datatopup;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,11 +10,19 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.fangxu.allangleexpandablebutton.AllAngleExpandableButton;
+import com.fangxu.allangleexpandablebutton.ButtonData;
+import com.fangxu.allangleexpandablebutton.ButtonEventListener;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         initialize();
         button_options();
+        angleMenu(this);
     }
 
 
@@ -139,6 +149,58 @@ public class MainActivity extends AppCompatActivity {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+    }
+
+    // on button telikom item clicked it brings up a menu options
+    // to choose other services such as esi pay and tok combo
+    public void angleMenu(Context context){
+        AllAngleExpandableButton button = (AllAngleExpandableButton)findViewById(R.id.button_expandable);
+        final List<ButtonData> buttonDatas = new ArrayList<>();
+
+        int[] draw = {R.drawable.telikom, R.drawable.ic_power_black_24dp,
+                R.drawable.ic_launcher_background, R.drawable.ic_launcher_background, R.drawable.ic_launcher_background
+                , R.drawable.ic_launcher_background, R.drawable.ic_launcher_background};
+
+        for (int i = 0; i < draw.length; i++) {
+            ButtonData buttonData = (ButtonData) ButtonData.buildIconButton(this,draw[i], 5);
+            buttonDatas.add(buttonData);
+        }
+        button.setButtonDatas(buttonDatas);
+
+        button.setButtonEventListener(new ButtonEventListener() {
+            @Override
+            public void onButtonClicked(int index) {
+                //do whatever you want,the param index is counted from startAngle to endAngle,
+                //the value is from 1 to buttonCount - 1(buttonCount if aebIsSelectionMode=true)
+                if (index == 1){
+
+                        Toast.makeText(MainActivity.this, "New", Toast.LENGTH_SHORT).show();
+                }
+                if (index == 2){
+
+                        Toast.makeText(MainActivity.this, "Requested", Toast.LENGTH_SHORT).show();
+                }
+                if (index == 4){
+
+                            Toast.makeText(MainActivity.this, "Pending", Toast.LENGTH_SHORT).show();
+                }
+
+                if (index == 3){
+                        Toast.makeText(MainActivity.this, "Completed", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onExpand() {
+
+            }
+
+            @Override
+            public void onCollapse() {
+
+            }
+        });
     }
 
 
