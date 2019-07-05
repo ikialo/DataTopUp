@@ -111,11 +111,43 @@
     android:text="K150 - 30G for 30 days"
     />
 
-    <ImageView
-        android:layout_marginTop="40dp"
-        android:src="@drawable/telikom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <!--<ImageView-->
+        <!--android:layout_marginTop="40dp"-->
+        <!--android:src="@drawable/telikom"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+
+    <com.fangxu.allangleexpandablebutton.AllAngleExpandableButton
+        android:id="@+id/button_expandable"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+
+        app:aebAnimDurationMillis="175"
+        app:aebBlurBackground="true"
+        app:aebBlurRadius="10"
+        app:aebButtonElevation="4dp"
+        app:aebButtonGapDp="15dp"
+        app:aebEndAngleDegree="360"
+        app:aebIsSelectionMode="false"
+        app:aebMainButtonRotateAnimDurationMillis="1000"
+        app:aebMainButtonRotateDegree="-360"
+        app:aebMainButtonSizeDp="56dp"
+        app:aebMainButtonTextColor="#ffff5656"
+        app:aebMainButtonTextSizeSp="20dp"
+        app:aebMaskBackgroundColor="@color/colorAccent"
+        app:aebRippleColor="@color/colorAccent"
+        app:aebRippleEffect="true"
+        app:aebStartAngleDegree="0"
+        app:aebSubButtonSizeDp="46dp"
+        app:aebSubButtonTextColor="@color/colorAccent"
+        app:aebSubButtonTextSizeSp="14dp"
+      />
+
 
 
 </LinearLayout>
