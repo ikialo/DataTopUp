@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:textSize="34dp"
+        android:gravity="center"
+        android:text="Telikom Data Bundles"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_marginBottom="2dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:id="@+id/k3_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="K3 - 500MB for 1 day"
+        />
+    <Button
+        android:textSize="30dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="2dp"
+        android:gravity="center"
+        android:id="@+id/k6_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="K6 - 1G for 3days"
+        />
+    <Button
+        android:gravity="center"
+        android:textSize="30dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="2dp"
+
+        android:id="@+id/k12_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="K12 - 2G for 7 days"
+        />
+    <Button
+        android:textSize="30dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="2dp"
+        android:gravity="center"
+        android:id="@+id/k55_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="K55 - 10G for 30 days"
+        />
+    <Button
+        android:textSize="30dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="2dp"
+        android:gravity="center"
+        android:id="@+id/k110_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="K110 - 20G for 30 days"
+        />    <Button
+    android:textSize="30dp"
+        android:layout_marginBottom="2dp"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:id="@+id/k150_"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="K150 - 30G for 30 days"
+    />
+
+
+</LinearLayout>
