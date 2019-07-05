@@ -17,53 +17,54 @@ import java.net.URLEncoder;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE= 458;
     Button k3,k6,k12, k55, k110, k150;
     String preSelect, ussd_code;
+    Intent dial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        k3 = findViewById(R.id.k3_);
-        k6 = findViewById(R.id.k6_);
-        k12 = findViewById(R.id.k12_);
-        k55 = findViewById(R.id.k55_);
-        k110 = findViewById(R.id.k110_);
-        k150 = findViewById(R.id.k150_);
+        initialize();
+        button_options();
+    }
 
 
+    //press button to start bundle selection
+    private void button_options() {
         k3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preSelect = "*777*1*1*1#";
+                preSelect = (String) getString(R.string.bundle_k3);
                 areYouSure(k3.getText().toString(), preSelect);            }
         });
         k6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preSelect = "*777*1*2*1#";
+                preSelect = (String) getString(R.string.bundle_k6);
                 areYouSure(k6.getText().toString(), preSelect);
             }
         });
         k12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preSelect = "*777*1*3*1#";
+                preSelect = (String) getString(R.string.bundle_k12);
                 areYouSure(k12.getText().toString(), preSelect);
             }
         });
         k55.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preSelect = "*777*1*4*1#";
+                preSelect = (String) getString(R.string.bundle_55);
                 areYouSure(k55.getText().toString(), preSelect);
             }
         });
         k110.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preSelect = "*777*1*5*1#";
+                preSelect = (String) getString(R.string.bundle_110);
                 areYouSure(k110.getText().toString(), preSelect);
             }
         });
@@ -71,17 +72,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                preSelect = "*777*1*6*1#";
+                preSelect = (String) getString(R.string.bundle_k150);
                 areYouSure(k150.getText().toString(), preSelect);
 
             }
         });
 
+    }
 
+    //one time initialized variable
+    private void initialize() {
+        k3 = findViewById(R.id.k3_);
+        k6 = findViewById(R.id.k6_);
+        k12 = findViewById(R.id.k12_);
+        k55 = findViewById(R.id.k55_);
+        k110 = findViewById(R.id.k110_);
+        k150 = findViewById(R.id.k150_);
 
     }
 
+    // dialog option to confirm button press
     private void areYouSure(String bundle, final String preSelect){
+
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -103,17 +115,27 @@ public class MainActivity extends AppCompatActivity {
                 .setNegativeButton("Cancel", dialogClickListener).show();
     }
 
+    //connects to Telikom system to purchase bundle
     private void call_ussd(String code) {
         try {
 
             ussd_code = URLEncoder.encode(code, "UTF-8");
 
 
-            Intent dial = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + ussd_code));
+            dial = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + ussd_code));
+
+            //check if permission is granted
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                return;
+
+                //Request Permission if permission wasnt granted
+                ActivityCompat.requestPermissions(MainActivity.this,
+                new String[]{Manifest.permission.CALL_PHONE},
+                MY_PERMISSIONS_REQUEST_CALL_PHONE);
+
+            }else {
+                startActivity(dial);
             }
-            startActivity(dial);
+
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -121,44 +143,29 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//
-//    @Override
-//    public void onClick(View v) {
-//
-//        switch (v.getId()){
-//            case R.id.k3_:
-//                preSelect = "*777*1*1#";
-//
-//            case R.id.k6_:
-//                preSelect = "*777*1*2#";
-//            case R.id.k12_:
-//                preSelect = "*777*1*3#";
-//            case R.id.k55_:
-//                preSelect = "*777*1*4#";
-//            case R.id.k110_:
-//                preSelect = "*777*1*5#";
-//            case R.id.k150_:
-//                preSelect = "*777*1*6#";
-//
-//            default:
-//                preSelect = "null";
-//        }
-//
-//        try {
-//            if (!preSelect.equals("null")) {
-//                ussd_code = URLEncoder.encode(preSelect, "UTF-8");
-//            }
-//
-//            Intent dial = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + ussd_code));
-//            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-//                return;
-//            }
-//            startActivity(dial);
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CALL_PHONE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                    startActivity(dial);
 
 
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request.
+        }
+    }
 
 }
