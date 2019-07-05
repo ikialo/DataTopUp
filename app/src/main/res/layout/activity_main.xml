@@ -22,7 +22,7 @@
         android:layout_height="wrap_content" />
     <Button
 
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorWhite"
 
         android:layout_marginRight="2dp"
         android:layout_marginLeft="2dp"
@@ -36,7 +36,8 @@
         android:layout_height="wrap_content"
         android:text="K3 - 500MB for 1 day"
         />
-    <Button        android:textColor="@color/colorPrimary"
+    <Button
+        android:textColor="@color/colorWhite"
 
         android:layout_marginRight="2dp"
         android:layout_marginLeft="2dp"
@@ -51,6 +52,8 @@
         android:text="K6 - 1G for 3days"
         />
     <Button
+        android:textColor="@color/colorWhite"
+
         android:layout_marginRight="2dp"
         android:layout_marginLeft="2dp"
         android:background="@drawable/button_background"
@@ -58,7 +61,6 @@
         android:textSize="30dp"
         android:layout_gravity="center"
         android:layout_marginBottom="2dp"
-        android:textColor="@color/colorPrimary"
 
         android:id="@+id/k12_"
         android:layout_width="match_parent"
@@ -66,7 +68,7 @@
         android:text="K12 - 2G for 7 days"
         />
     <Button
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorWhite"
 
         android:layout_marginRight="2dp"
         android:layout_marginLeft="2dp"
@@ -88,7 +90,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="2dp"
         android:gravity="center"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorWhite"
 
         android:id="@+id/k110_"
         android:layout_width="match_parent"
@@ -104,7 +106,8 @@
     android:gravity="center"
     android:layout_gravity="center"
     android:id="@+id/k150_"
-        android:textColor="@color/colorPrimary"
+             android:textColor="@color/colorWhite"
+
 
         android:layout_width="match_parent"
     android:layout_height="wrap_content"

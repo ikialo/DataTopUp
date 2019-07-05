@@ -99,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Confirm Purchase of "+bundle).setPositiveButton("Yes", dialogClickListener)
-                .setNegativeButton("No", dialogClickListener).show();
+        builder.setMessage("Confirm Purchase of "+bundle).setPositiveButton("Confirm", dialogClickListener)
+                .setNegativeButton("Cancel", dialogClickListener).show();
     }
 
     private void call_ussd(String code) {
