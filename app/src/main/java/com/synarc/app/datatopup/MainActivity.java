@@ -174,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 //the value is from 1 to buttonCount - 1(buttonCount if aebIsSelectionMode=true)
                 if (index == 1){
 
+                        startActivity(new Intent(MainActivity.this, EsiPayActivity.class));
                         Toast.makeText(MainActivity.this, "New", Toast.LENGTH_SHORT).show();
                 }
                 if (index == 2){
@@ -205,57 +206,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    // on button telikom item clicked it brings up a menu options
-    // to choose other services such as esi pay and tok combo
-    public void angleMenu(Context context){
-        AllAngleExpandableButton button = (AllAngleExpandableButton)findViewById(R.id.button_expandable);
-        final List<ButtonData> buttonDatas = new ArrayList<>();
-
-        int[] draw = {R.drawable.telikom, R.drawable.ic_power_black_24dp,
-                R.drawable.ic_launcher_background, R.drawable.ic_launcher_background, R.drawable.ic_launcher_background
-                , R.drawable.ic_launcher_background, R.drawable.ic_launcher_background};
-
-        for (int i = 0; i < draw.length; i++) {
-            ButtonData buttonData = (ButtonData) ButtonData.buildIconButton(this,draw[i], 5);
-            buttonDatas.add(buttonData);
-        }
-        button.setButtonDatas(buttonDatas);
-
-        button.setButtonEventListener(new ButtonEventListener() {
-            @Override
-            public void onButtonClicked(int index) {
-                //do whatever you want,the param index is counted from startAngle to endAngle,
-                //the value is from 1 to buttonCount - 1(buttonCount if aebIsSelectionMode=true)
-                if (index == 1){
-
-                        Toast.makeText(MainActivity.this, "New", Toast.LENGTH_SHORT).show();
-                }
-                if (index == 2){
-
-                        Toast.makeText(MainActivity.this, "Requested", Toast.LENGTH_SHORT).show();
-                }
-                if (index == 4){
-
-                            Toast.makeText(MainActivity.this, "Pending", Toast.LENGTH_SHORT).show();
-                }
-
-                if (index == 3){
-                        Toast.makeText(MainActivity.this, "Completed", Toast.LENGTH_SHORT).show();
-
-                }
-            }
-
-            @Override
-            public void onExpand() {
-
-            }
-
-            @Override
-            public void onCollapse() {
-
-            }
-        });
-    }
 
 
 
