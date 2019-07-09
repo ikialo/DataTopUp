@@ -3,6 +3,8 @@
     package="com.synarc.app.datatopup">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CAMERA"> </uses-permission>
+
 
     <application
         android:allowBackup="true"
@@ -11,10 +13,16 @@
         android:roundIcon="@drawable/telikom"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ScanCreditActivity"></activity>
+
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="ocr" />
+
         <activity
             android:name=".EsiPayActivity"
             android:label="@string/title_activity_esi_pay"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

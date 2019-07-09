@@ -176,11 +176,13 @@ public class MainActivity extends AppCompatActivity {
 
                         startActivity(new Intent(MainActivity.this, EsiPayActivity.class));
                         Toast.makeText(MainActivity.this, "New", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(MainActivity.this, EsiPayActivity.class));
                 }
                 if (index == 2){
 
-                        Toast.makeText(MainActivity.this, "Requested", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this, ScanCreditActivity.class));
+
+
+                    Toast.makeText(MainActivity.this, "Requested", Toast.LENGTH_SHORT).show();
                 }
                 if (index == 4){
 
