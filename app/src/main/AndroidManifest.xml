@@ -11,7 +11,10 @@
         android:roundIcon="@drawable/telikom"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EsiPayActivity"></activity>
+        <activity
+            android:name=".EsiPayActivity"
+            android:label="@string/title_activity_esi_pay"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

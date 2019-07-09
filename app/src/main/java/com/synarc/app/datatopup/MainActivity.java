@@ -176,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
 
                         startActivity(new Intent(MainActivity.this, EsiPayActivity.class));
                         Toast.makeText(MainActivity.this, "New", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this, EsiPayActivity.class));
                 }
                 if (index == 2){
 
