@@ -151,8 +151,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
     // on button telikom item clicked it brings up a menu options
     // to choose other services such as esi pay and tok combo
     public void angleMenu(Context context){
@@ -176,12 +174,15 @@ public class MainActivity extends AppCompatActivity {
                 //the value is from 1 to buttonCount - 1(buttonCount if aebIsSelectionMode=true)
                 if (index == 1){
 
-                        Toast.makeText(MainActivity.this, "New", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(MainActivity.this, EsiPayActivity.class));
+                        Toast.makeText(MainActivity.this, "New", Toast.LENGTH_SHORT).show();
                 }
                 if (index == 2){
 
-                        Toast.makeText(MainActivity.this, "Requested", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this, ScanCreditActivity.class));
+
+
+                    Toast.makeText(MainActivity.this, "Requested", Toast.LENGTH_SHORT).show();
                 }
                 if (index == 4){
 
@@ -205,6 +206,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 
 
 
