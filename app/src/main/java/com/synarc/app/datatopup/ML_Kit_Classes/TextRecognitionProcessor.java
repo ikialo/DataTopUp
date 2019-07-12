@@ -4,12 +4,14 @@ import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
+import com.synarc.app.datatopup.ScanCreditActivity;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,9 +21,11 @@ public class TextRecognitionProcessor extends VisionProcessorBase<FirebaseVision
     private static final String TAG = "TextRecProc";
 
     private final FirebaseVisionTextRecognizer detector;
+    private final ScanCreditActivity activityInstance;
 
-    public TextRecognitionProcessor() {
+    public TextRecognitionProcessor(ScanCreditActivity scanCreditActivity) {
         detector = FirebaseVision.getInstance().getOnDeviceTextRecognizer();
+        activityInstance = scanCreditActivity;
     }
 
     @Override
@@ -35,16 +39,22 @@ public class TextRecognitionProcessor extends VisionProcessorBase<FirebaseVision
 
     @Override
     protected Task<FirebaseVisionText> detectInImage(FirebaseVisionImage image) {
+
+
         return detector.processImage(image);
     }
 
     @Override
     protected void onSuccess(
             @Nullable Bitmap originalCameraImage,
-            @NonNull FirebaseVisionText results,
+            @NonNull final FirebaseVisionText results,
             @NonNull FrameMetadata frameMetadata,
             @NonNull GraphicOverlay graphicOverlay) {
+
+
+
         graphicOverlay.clear();
+
         if (originalCameraImage != null) {
             CameraImageGraphic imageGraphic = new CameraImageGraphic(graphicOverlay,
                     originalCameraImage);
@@ -63,6 +73,17 @@ public class TextRecognitionProcessor extends VisionProcessorBase<FirebaseVision
             }
         }
         graphicOverlay.postInvalidate();
+
+        activityInstance
+                .capture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                activityInstance.updateSpinnerFromTextResults(results);
+            }
+        });
+
+
     }
 
     @Override

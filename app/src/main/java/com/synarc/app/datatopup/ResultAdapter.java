@@ -10,30 +10,28 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class AdapterEsiPayRecycler extends   RecyclerView.Adapter <AdapterEsiPayRecycler.EsiPayViewHolder> {
+public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultViewHolder> {
 
-
-    Context mContext;
-    List<EsiPayMeterDetail> mNameDB;
+   Context mContext;
+    List<String> mNameDB;
     private OnItemClickListener mListener;
 
-    public AdapterEsiPayRecycler(Context context, List<EsiPayMeterDetail> NameDB) {
+    public ResultAdapter(Context context, List<String> NameDB) {
         mContext = context;
         mNameDB = NameDB;
     }
-
-
     @NonNull
     @Override
-    public EsiPayViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ResultViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.camera_simple_spinner_item, viewGroup, false);
-        return new EsiPayViewHolder(v);    }
+        return new ResultAdapter.ResultViewHolder(v);
+    }
 
     @Override
-    public void onBindViewHolder(@NonNull EsiPayViewHolder esiPayViewHolder, int i) {
+    public void onBindViewHolder(@NonNull ResultViewHolder resultViewHolder, int i) {
 
-        esiPayViewHolder.meterNumber.setText(mNameDB.get(i).getMeterNumber());
-        esiPayViewHolder.name.setText(mNameDB.get(i).getName());
+        resultViewHolder.ScanOption.setText(mNameDB.get(i));
+
     }
 
     @Override
@@ -41,20 +39,20 @@ public class AdapterEsiPayRecycler extends   RecyclerView.Adapter <AdapterEsiPay
         return mNameDB.size();
     }
 
-    public class  EsiPayViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener{
+    public class  ResultViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView name, meterNumber;
-        public EsiPayViewHolder(@NonNull View itemView) {
+        TextView ScanOption;
+        public ResultViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            name = itemView.findViewById(R.id.Metername);
-            meterNumber = itemView.findViewById(R.id.meterNumber);
+            ScanOption = itemView.findViewById(R.id.scnaOptions);
+
 
             itemView.setOnClickListener(this);
         }
 
         @Override
-            public void onClick(View view) {
+        public void onClick(View view) {
 
             if (mListener != null){
                 int position = getAdapterPosition();
@@ -63,8 +61,8 @@ public class AdapterEsiPayRecycler extends   RecyclerView.Adapter <AdapterEsiPay
                     mListener.onItemClick(position);
                 }
             }
-            }
         }
+    }
 
     public interface OnItemClickListener{
         void onItemClick (int position);
@@ -78,9 +76,7 @@ public class AdapterEsiPayRecycler extends   RecyclerView.Adapter <AdapterEsiPay
 //        void onAcknowledgeClick(int position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener){
+    public void setOnItemClickListener(ResultAdapter.OnItemClickListener listener){
         mListener = listener;
     }
-
-
 }
