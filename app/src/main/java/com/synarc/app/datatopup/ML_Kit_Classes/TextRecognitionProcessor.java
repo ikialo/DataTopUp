@@ -83,6 +83,7 @@ public class TextRecognitionProcessor extends VisionProcessorBase<FirebaseVision
             }
         });
 
+        ///
 
     }
 
