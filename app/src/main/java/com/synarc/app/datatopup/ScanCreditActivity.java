@@ -2,32 +2,28 @@ package com.synarc.app.datatopup;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.hardware.camera2.CameraAccessException;
-import android.hardware.camera2.CameraCharacteristics;
-import android.hardware.camera2.CameraManager;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
+import android.hardware.Camera;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.util.SparseIntArray;
-import android.view.Surface;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.ml.vision.common.FirebaseVisionImageMetadata;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.synarc.app.datatopup.ML_Kit_Classes.CameraSource;
 import com.synarc.app.datatopup.ML_Kit_Classes.CameraSourcePreview;
@@ -35,22 +31,36 @@ import com.synarc.app.datatopup.ML_Kit_Classes.GraphicOverlay;
 import com.synarc.app.datatopup.ML_Kit_Classes.TextRecognitionProcessor;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.security.Policy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScanCreditActivity extends AppCompatActivity {
+public class ScanCreditActivity extends AppCompatActivity implements ResultAdapter.OnItemClickListener {
 
     private static final String TAG = "LauncherActivity";
+    private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 358;
     private CameraSourcePreview preview; // To handle the camera
     private GraphicOverlay graphicOverlay; // To draw over the camera screen
     private CameraSource cameraSource = null; //To handle the camera
     private RecyclerView resultSpinner;// To display the results recieved from Firebase MLKit
     private static final int PERMISSION_REQUESTS = 1; // to handle the runtime permissions
-    private List<String> displayList; // to manage the adapter of the results recieved
+    public List<String> displayList; // to manage the adapter of the results recieved
     private ResultAdapter displayAdapter; // adapter bound with the result recycler view ---> Contains a simple textview with background
-    private TextView resultNumberTv;// to display the number of results
     private LinearLayout resultContainer;// just another layout to maintain the symmetry
     public Button capture;
+    private String ussd_code;
+    private Intent dial;
+
+    private Button btnSwitch;
+
+    private android.hardware.Camera camera;
+    private boolean isFlashOn;
+    private boolean hasFlash;
+    private android.hardware.Camera.Parameters params;
+    private MediaPlayer mp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +70,28 @@ public class ScanCreditActivity extends AppCompatActivity {
         xmlViews();
 
         initializeView();
+
+        chechFlash();
+
+        getCamera();
+
+        /*
+         * Switch button click event to toggle flash on/off
+         */
+        btnSwitch.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (isFlashOn) {
+                    // turn off flash
+                    turnOffFlash();
+                } else {
+                    // turn on flash
+                    turnOnFlash();
+                }
+            }
+        });
+
 
         if (preview == null) {
             Log.d(TAG, " Preview is null ");
@@ -82,6 +114,41 @@ public class ScanCreditActivity extends AppCompatActivity {
         });
 
     }
+
+    private void chechFlash() {
+
+        hasFlash = getApplicationContext().getPackageManager()
+                .hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+
+        if (!hasFlash) {
+            // device doesn't support flash
+            // Show alert message and close the application
+            AlertDialog alert = new AlertDialog.Builder(ScanCreditActivity.this)
+                    .create();
+            alert.setTitle("Error");
+            alert.setMessage("Sorry, your device doesn't support flash light!");
+
+            alert.show();
+            return;
+        }
+    }
+
+    /*
+     * Get the camera
+     */
+    private void getCamera() {
+        if (camera == null) {
+            try {
+                camera = Camera.open();
+                params = camera.getParameters();
+
+
+            } catch (RuntimeException e) {
+                Log.e("CameraError ", e.getMessage());
+            }
+        }
+    }
+
 
 
     // Actual code to start the camera
@@ -131,19 +198,22 @@ public class ScanCreditActivity extends AppCompatActivity {
         displayList = new ArrayList<>();
         resultSpinner.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         displayAdapter = new ResultAdapter(this, displayList);
+        displayAdapter.setOnItemClickListener(this);
         resultSpinner.setAdapter(displayAdapter);
         resultContainer.getLayoutParams().height = (int) (Resources.getSystem().getDisplayMetrics().heightPixels * 0.65);
-        resultNumberTv.setText(getString(R.string.x_results_found, displayList.size()));
+
     }
 
     private void xmlViews() {
         // getting views from the xml
-        resultNumberTv = findViewById(R.id.resultsMessageTv);
+
         resultContainer = findViewById(R.id.resultsContainer);
         resultSpinner = findViewById(R.id.results_spinner);
         preview =  findViewById(R.id.Preview);
         graphicOverlay = findViewById(R.id.Overlay);
         capture = findViewById(R.id.capture);
+        // flash switch button
+        btnSwitch =  findViewById(R.id.flash);
     }
  // Function to check if all permissions given by the user
     private boolean allPermissionsGranted() {
@@ -213,18 +283,146 @@ public class ScanCreditActivity extends AppCompatActivity {
         for (FirebaseVisionText.TextBlock eachBlock : blocks) {
             for (FirebaseVisionText.Line eachLine : eachBlock.getLines()) {
                 for (FirebaseVisionText.Element eachElement : eachLine.getElements()) {
-                    if (!displayList.contains(eachElement.getText()) && displayList.size() <= 9) {
-                        displayList.add(eachLine.getText());
+                   // if (!displayList.contains(eachElement.getText()) && displayList.size() <= 9) {
 
-                        Log.d(TAG, "updateSpinnerFromTextResults: "+ eachElement.getText());
+                    if (eachLine.getElements().size() == 3) {
+                        if (eachElement.getText().length() == 4) {
 
+                          //  String number = eachLine.getText();
+
+
+
+
+//                            number = number.replaceAll("\\s", "") ;
+//
+//
+//                            for (int p = 0; p < number.length() ; p++){
+//
+//                                if (Character.isDigit(number.charAt(p))){
+//
+//                                }
+//
+//                            }
+
+                            displayList.add(eachLine.getText());
+
+                            Log.d(TAG, "updateSpinnerFromTextResults: " + eachElement.getText());
+                        }
                     }
+
+
+                   // }
                 }
             }
         }
-        resultNumberTv.setText(getString(R.string.x_results_found, displayList.size()));
+
         displayAdapter.notifyDataSetChanged();
     }
 
+
+    @Override
+    public void onItemClick(int position) {
+
+       String voucherNo = displayList.get(position);
+
+        voucherNo = voucherNo.replaceAll("\\s", "") ;
+
+        String code = "*121*"+voucherNo+"#";
+
+        Toast.makeText(this, code, Toast.LENGTH_SHORT).show();
+
+        call_ussd(code);
+
+
+    }
+
+    public void call_ussd(String code) {
+        try {
+
+            ussd_code = URLEncoder.encode(code, "UTF-8");
+
+
+            dial = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + ussd_code));
+
+            //check if permission is granted
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+
+                //Request Permission if permission wasnt granted
+                ActivityCompat.requestPermissions(ScanCreditActivity.this,
+                        new String[]{Manifest.permission.CALL_PHONE},
+                        MY_PERMISSIONS_REQUEST_CALL_PHONE);
+
+            }else {
+                startActivity(dial);
+            }
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
+     * Turning On flash
+     */
+    private void turnOnFlash() {
+        if (!isFlashOn) {
+            if (camera == null || params == null) {
+                return;
+            }
+            // play sound
+          //  playSound();
+
+            params = camera.getParameters();
+            params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+            camera.setParameters(params);
+            camera.startPreview();
+            isFlashOn = true;
+
+            // changing button/switch image
+
+        }
+
+    }
+
+    /*
+     * Turning Off flash
+     */
+    private void turnOffFlash() {
+        if (isFlashOn) {
+            if (camera == null || params == null) {
+                return;
+            }
+            // play sound
+            //playSound();
+
+            params = camera.getParameters();
+            params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+            camera.setParameters(params);
+            camera.stopPreview();
+            isFlashOn = false;
+
+            // changing button/switch image
+        }
+    }
+
+    /*
+     * Playing sound will play button toggle sound on flash on / off
+     */
+//    private void playSound() {
+//        if (isFlashOn) {
+//            mp = MediaPlayer.create(ScanCreditActivity.this, R.raw.light_switch_off);
+//        } else {
+//            mp = MediaPlayer.create(ScanCreditActivity.this, R.raw.light_switch_on);
+//        }
+//        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//
+//            @Override
+//            public void onCompletion(MediaPlayer mp) {
+//                // TODO Auto-generated method stub
+//                mp.release();
+//            }
+//        });
+//        mp.start();
+//    }
 
 }

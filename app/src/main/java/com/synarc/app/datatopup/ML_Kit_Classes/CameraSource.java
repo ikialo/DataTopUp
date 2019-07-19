@@ -23,6 +23,7 @@ import com.google.android.gms.common.images.Size;
 
 import java.io.IOException;
 import java.lang.Thread.State;
+import java.lang.reflect.Parameter;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
@@ -263,13 +264,16 @@ public class CameraSource {
      *
      * @throws IOException if camera cannot be found or preview cannot be processed
      */
-    @SuppressLint("InlinedApi")
+  //  @SuppressLint("InlinedApi")
     private Camera createCamera() throws IOException {
         int requestedCameraId = getIdForRequestedCamera(facing);
         if (requestedCameraId == -1) {
             throw new IOException("Could not find requested camera.");
         }
-        Camera camera = Camera.open(requestedCameraId);
+        Camera camera = null;
+                camera = Camera.open(requestedCameraId);
+                
+
 
         SizePair sizePair = selectSizePair(camera, requestedPreviewWidth, requestedPreviewHeight);
         if (sizePair == null) {
@@ -288,6 +292,7 @@ public class CameraSource {
         if (pictureSize != null) {
             parameters.setPictureSize(pictureSize.getWidth(), pictureSize.getHeight());
         }
+        parameters.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
         parameters.setPreviewSize(previewSize.getWidth(), previewSize.getHeight());
         parameters.setPreviewFpsRange(
                 previewFpsRange[Camera.Parameters.PREVIEW_FPS_MIN_INDEX],

@@ -1,86 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fireTopLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="100"
+    android:background="@color/colorPageBack"
     android:keepScreenOn="true"
     tools:context=".ScanCreditActivity"
     android:orientation="vertical">
 
     <com.synarc.app.datatopup.ML_Kit_Classes.CameraSourcePreview
         android:id="@+id/Preview"
+        android:layout_weight="35"
+        android:background="@drawable/button_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+       >
 
         <com.synarc.app.datatopup.ML_Kit_Classes.GraphicOverlay
             android:id="@+id/Overlay"
             android:layout_width="match_parent"
+            android:foregroundGravity="center"
+
             android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true" />
+            />
 
     </com.synarc.app.datatopup.ML_Kit_Classes.CameraSourcePreview>>
 
-    <RelativeLayout
-        android:visibility="gone"
-        android:id="@+id/control"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toEndOf="@id/Preview"
-        android:layout_toRightOf="@id/Preview"
-        >
 
-        <TextView
-            android:id="@+id/resultsMessageTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:drawableTint="@android:color/white"
-            android:padding="6dp"
-            android:text="text"
-            android:textColor="@android:color/white" />
-
-
-    </RelativeLayout>
 
     <LinearLayout
+        android:layout_weight="65"
         android:id="@+id/resultsContainer"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_alignBottom="@+id/Preview"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="2dp"
 
-        android:layout_marginBottom="5dp"
+
         android:gravity="bottom">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/results_spinner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignStart="@+id/resultsContainer" />
+            />
     </LinearLayout>
 
-    <Button
 
-        android:id="@+id/capture"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/resultsContainer"
-        android:layout_alignBottom="@+id/resultsContainer"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="2dp"
-        android:text="Capture" />
+        android:layout_height="wrap_content">
 
-</RelativeLayout>
+
+        <Button
+            android:background="@drawable/round_button_background"
+            android:paddingTop="12dp"
+android:layout_marginStart="150dp"
+            android:drawableTop="@drawable/ic_camera_alt_black_24dp"
+            android:layout_gravity="center"
+            android:id="@+id/capture"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:gravity="center"
+            android:text="" />
+
+        <Button
+            android:visibility="gone"
+            android:background="@drawable/round_button_background"
+            android:paddingTop="12dp"
+
+            android:drawableTop="@drawable/ic_flash_on_black_24dp"
+            android:layout_gravity="center"
+            android:id="@+id/flash"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+
+            android:layout_marginStart="50dp"
+            android:gravity="center"
+            android:text="" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

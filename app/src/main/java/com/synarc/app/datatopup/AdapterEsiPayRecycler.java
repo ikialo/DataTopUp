@@ -26,14 +26,17 @@ public class AdapterEsiPayRecycler extends   RecyclerView.Adapter <AdapterEsiPay
     @NonNull
     @Override
     public EsiPayViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.camera_simple_spinner_item, viewGroup, false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.item_esipay_rec, viewGroup, false);
         return new EsiPayViewHolder(v);    }
 
     @Override
     public void onBindViewHolder(@NonNull EsiPayViewHolder esiPayViewHolder, int i) {
 
-        esiPayViewHolder.meterNumber.setText(mNameDB.get(i).getMeterNumber());
-        esiPayViewHolder.name.setText(mNameDB.get(i).getName());
+        if (mNameDB.get(i).getMeterNumber()!= null && mNameDB.get(i).getName() != null){
+            esiPayViewHolder.meterNumber.setText(mNameDB.get(i).getMeterNumber());
+            esiPayViewHolder.name.setText(mNameDB.get(i).getName());
+        }
+
     }
 
     @Override

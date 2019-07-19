@@ -66,9 +66,16 @@ public class TextRecognitionProcessor extends VisionProcessorBase<FirebaseVision
             for (int j = 0; j < lines.size(); j++) {
                 List<FirebaseVisionText.Element> elements = lines.get(j).getElements();
                 for (int k = 0; k < elements.size(); k++) {
-                    GraphicOverlay.Graphic textGraphic = new TextGraphic(graphicOverlay,
-                            elements.get(k));
-                    graphicOverlay.add(textGraphic);
+
+
+                    if (lines.get(j).getElements().size() == 3) {
+                        if (elements.get(k).getText().length() == 4) {
+                            GraphicOverlay.Graphic textGraphic = new TextGraphic(graphicOverlay,
+                                    elements.get(k));
+                            graphicOverlay.add(textGraphic);
+                        }
+
+                    }
                 }
             }
         }
@@ -79,6 +86,7 @@ public class TextRecognitionProcessor extends VisionProcessorBase<FirebaseVision
             @Override
             public void onClick(View v) {
 
+                activityInstance.displayList.clear();
                 activityInstance.updateSpinnerFromTextResults(results);
             }
         });
