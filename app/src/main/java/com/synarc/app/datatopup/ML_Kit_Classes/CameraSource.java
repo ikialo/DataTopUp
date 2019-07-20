@@ -264,15 +264,27 @@ public class CameraSource {
      *
      * @throws IOException if camera cannot be found or preview cannot be processed
      */
-  //  @SuppressLint("InlinedApi")
+    @SuppressLint("InlinedApi")
     private Camera createCamera() throws IOException {
         int requestedCameraId = getIdForRequestedCamera(facing);
         if (requestedCameraId == -1) {
             throw new IOException("Could not find requested camera.");
         }
+
         Camera camera = null;
-                camera = Camera.open(requestedCameraId);
-                
+
+       // isCameraUsebyApp(camera, requestedCameraId);
+//        try {
+//           // camera = Camera.open();
+         camera = Camera.open(requestedCameraId);
+//
+//        } catch (RuntimeException e) {
+//
+//        } finally {
+//            if (camera != null) camera.release();
+//        }
+
+
 
 
         SizePair sizePair = selectSizePair(camera, requestedPreviewWidth, requestedPreviewHeight);
@@ -292,7 +304,7 @@ public class CameraSource {
         if (pictureSize != null) {
             parameters.setPictureSize(pictureSize.getWidth(), pictureSize.getHeight());
         }
-        parameters.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
+        parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
         parameters.setPreviewSize(previewSize.getWidth(), previewSize.getHeight());
         parameters.setPreviewFpsRange(
                 previewFpsRange[Camera.Parameters.PREVIEW_FPS_MIN_INDEX],
@@ -728,5 +740,20 @@ public class CameraSource {
     /** Cleans up graphicOverlay and child classes can do their cleanups as well . */
     private void cleanScreen() {
         graphicOverlay.clear();
+    }
+
+
+    public boolean isCameraUsebyApp(Camera camera, int requestedCameraId) {
+        try {
+            // camera = Camera.open();
+            camera = Camera.open(requestedCameraId);
+
+        } catch (RuntimeException e) {
+
+        } finally {
+            if (camera != null) camera.release();
+        }
+
+        return false;
     }
 }

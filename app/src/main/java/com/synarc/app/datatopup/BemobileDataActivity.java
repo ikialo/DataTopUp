@@ -10,7 +10,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -24,17 +23,18 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class BemobileDataActivity extends AppCompatActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE= 458;
-    Button k3,k6,k12, k55, k110, k150;
+    private Button k3,k6,k12, k55, k110, k150;
     String preSelect, ussd_code;
     Intent dial;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_bemobile_data);
 
         initialize();
         button_options();
@@ -42,39 +42,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     //press button to start bundle selection
     private void button_options() {
         k3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preSelect = (String) getString(R.string.bundle_k3);
+                preSelect = (String) getString(R.string.bundle_k3b);
                 areYouSure(k3.getText().toString(), preSelect);            }
         });
         k6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preSelect = (String) getString(R.string.bundle_k6);
+                preSelect = (String) getString(R.string.bundle_k6b);
                 areYouSure(k6.getText().toString(), preSelect);
             }
         });
         k12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preSelect = (String) getString(R.string.bundle_k12);
+                preSelect = (String) getString(R.string.bundle_k12b);
                 areYouSure(k12.getText().toString(), preSelect);
             }
         });
         k55.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preSelect = (String) getString(R.string.bundle_55);
+                preSelect = (String) getString(R.string.bundle_55b);
                 areYouSure(k55.getText().toString(), preSelect);
             }
         });
         k110.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preSelect = (String) getString(R.string.bundle_110);
+                preSelect = (String) getString(R.string.bundle_110b);
                 areYouSure(k110.getText().toString(), preSelect);
             }
         });
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                preSelect = (String) getString(R.string.bundle_k150);
+                preSelect = (String) getString(R.string.bundle_k150b);
                 areYouSure(k150.getText().toString(), preSelect);
 
             }
@@ -92,12 +93,12 @@ public class MainActivity extends AppCompatActivity {
 
     //one time initialized variable
     private void initialize() {
-        k3 = findViewById(R.id.k3_);
-        k6 = findViewById(R.id.k6_);
-        k12 = findViewById(R.id.k12_);
-        k55 = findViewById(R.id.k55_);
-        k110 = findViewById(R.id.k110_);
-        k150 = findViewById(R.id.k150_);
+        k3 = findViewById(R.id.k3_b);
+        k6 = findViewById(R.id.k6_b);
+        k12 = findViewById(R.id.k12_b);
+        k55 = findViewById(R.id.k55_b);
+        k110 = findViewById(R.id.k110_b);
+        k150 = findViewById(R.id.k150_b);
 
     }
 
@@ -138,9 +139,9 @@ public class MainActivity extends AppCompatActivity {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
 
                 //Request Permission if permission wasnt granted
-                ActivityCompat.requestPermissions(MainActivity.this,
-                new String[]{Manifest.permission.CALL_PHONE},
-                MY_PERMISSIONS_REQUEST_CALL_PHONE);
+                ActivityCompat.requestPermissions(BemobileDataActivity.this,
+                        new String[]{Manifest.permission.CALL_PHONE},
+                        MY_PERMISSIONS_REQUEST_CALL_PHONE);
 
             }else {
                 startActivity(dial);
@@ -158,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         final List<ButtonData> buttonDatas = new ArrayList<>();
 
         int[] draw = {R.drawable.ic_phone_android_black_24dp, R.drawable.ic_power_black_24dp,
-                R.drawable.ic_camera_alt_black_24dp, R.drawable.download};
+                R.drawable.ic_camera_alt_black_24dp, R.drawable.telikom};
 
         for (int i = 0; i < draw.length; i++) {
             ButtonData buttonData = (ButtonData) ButtonData.buildIconButton(this,draw[i], 5);
@@ -173,23 +174,21 @@ public class MainActivity extends AppCompatActivity {
                 //the value is from 1 to buttonCount - 1(buttonCount if aebIsSelectionMode=true)
                 if (index == 1){
 
-                        startActivity(new Intent(MainActivity.this, EsiPayActivity.class));
-                        Toast.makeText(MainActivity.this, "New", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(BemobileDataActivity.this, EsiPayActivity.class));
+                    Toast.makeText(BemobileDataActivity.this, "New", Toast.LENGTH_SHORT).show();
                 }
                 if (index == 2){
 
-                    startActivity(new Intent(MainActivity.this, ScanCreditActivity.class));
+                    startActivity(new Intent(BemobileDataActivity.this, ScanCreditActivity.class));
 
 
-                    Toast.makeText(MainActivity.this, "Requested", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BemobileDataActivity.this, "Requested", Toast.LENGTH_SHORT).show();
                 }
 
 
                 if (index == 3){
-                        Toast.makeText(MainActivity.this, "Completed", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, BemobileDataActivity.class));
-
-
+                    Toast.makeText(BemobileDataActivity.this, "Completed", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(BemobileDataActivity.this, MainActivity.class));
 
                 }
             }
