@@ -21,15 +21,55 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_esi_pay" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_esi_pay" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
+        android:layout_width="381dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="start|bottom"
         app:srcCompat="@drawable/ic_add_circle_black_24dp"
         tools:ignore="VectorDrawableCompat" />
+
+
+    <com.fangxu.allangleexpandablebutton.AllAngleExpandableButton
+        android:layout_margin="16dp"
+        android:id="@+id/button_expandable"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+
+        app:aebAnimDurationMillis="175"
+        app:aebBlurBackground="true"
+        app:aebBlurRadius="10"
+        app:aebButtonElevation="4dp"
+        app:aebButtonGapDp="15dp"
+        app:aebEndAngleDegree="90"
+        app:aebIsSelectionMode="false"
+        app:aebMainButtonRotateAnimDurationMillis="1000"
+        app:aebMainButtonRotateDegree="-360"
+        app:aebMainButtonSizeDp="56dp"
+        app:aebMainButtonTextColor="#ffff5656"
+        app:aebMainButtonTextSizeSp="20dp"
+        app:aebMaskBackgroundColor="@color/colorAccent"
+        app:aebRippleColor="@color/colorAccent"
+        app:aebRippleEffect="true"
+        app:aebStartAngleDegree="90"
+        app:aebSubButtonSizeDp="46dp"
+        app:aebSubButtonTextColor="@color/colorAccent"
+        app:aebSubButtonTextSizeSp="14dp"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="end|bottom" />
+
+
 
 </android.support.design.widget.CoordinatorLayout>

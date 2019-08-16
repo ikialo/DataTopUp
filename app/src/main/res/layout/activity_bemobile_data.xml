@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPageBack"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:background="@color/colorPageBack"
+    tools:context=".BemobileDataActivity">
+
 
     <TextView
         android:textColor="@color/colorPrimary"
@@ -14,7 +15,7 @@
         android:layout_gravity="center"
         android:textSize="30dp"
         android:gravity="center"
-        android:text="Telikom Data Bundles"
+        android:text="Bemobile Data Bundles"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -29,7 +30,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="20sp"
-        android:id="@+id/k3_"
+        android:id="@+id/k3_b"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="K3 - 500MB for 1 day"
@@ -44,7 +45,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="2dp"
         android:gravity="center"
-        android:id="@+id/k6_"
+        android:id="@+id/k6_b"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="K6 - 1G for 3days"
@@ -60,7 +61,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="2dp"
 
-        android:id="@+id/k12_"
+        android:id="@+id/k12_b"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="K12 - 2G for 7 days"
@@ -75,7 +76,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="2dp"
         android:gravity="center"
-        android:id="@+id/k55_"
+        android:id="@+id/k55_b"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="K55 - 10G for 30 days"
@@ -90,7 +91,7 @@
         android:gravity="center"
         android:textColor="@color/colorWhite"
 
-        android:id="@+id/k110_"
+        android:id="@+id/k110_b"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="K110 - 20G for 30 days"
@@ -99,24 +100,24 @@
         android:layout_marginRight="2dp"
         android:layout_marginLeft="2dp"
         android:background="@drawable/button_background"
-    android:textSize="20sp"
+        android:textSize="20sp"
         android:layout_marginBottom="2dp"
-    android:gravity="center"
-    android:layout_gravity="center"
-    android:id="@+id/k150_"
-             android:textColor="@color/colorWhite"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:id="@+id/k150_b"
+        android:textColor="@color/colorWhite"
 
 
         android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="K150 - 30G for 30 days"
-    />
+        android:layout_height="wrap_content"
+        android:text="K150 - 30G for 30 days"
+        />
 
     <!--<ImageView-->
-        <!--android:layout_marginTop="40dp"-->
-        <!--android:src="@drawable/telikom"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content" />-->
+    <!--android:layout_marginTop="40dp"-->
+    <!--android:src="@drawable/telikom"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content" />-->
 
     <com.fangxu.allangleexpandablebutton.AllAngleExpandableButton
         android:id="@+id/button_expandable"
@@ -147,7 +148,7 @@
         app:aebSubButtonSizeDp="46dp"
         app:aebSubButtonTextColor="@color/colorAccent"
         app:aebSubButtonTextSizeSp="14dp"
-      />
+        />
 
 
 

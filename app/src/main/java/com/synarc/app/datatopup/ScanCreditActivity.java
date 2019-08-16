@@ -24,6 +24,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fangxu.allangleexpandablebutton.AllAngleExpandableButton;
+import com.fangxu.allangleexpandablebutton.ButtonData;
+import com.fangxu.allangleexpandablebutton.ButtonEventListener;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.synarc.app.datatopup.ML_Kit_Classes.CameraSource;
 import com.synarc.app.datatopup.ML_Kit_Classes.CameraSourcePreview;
@@ -54,6 +57,7 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
     private Intent dial;
 
     private Button btnSwitch;
+
 
     private android.hardware.Camera camera;
     private boolean isFlashOn;
@@ -105,7 +109,7 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
         } else {
             getRuntimePermissions();
         }
-
+        angleMenu(this);
         capture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -424,5 +428,60 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
 //        });
 //        mp.start();
 //    }
+    // on button telikom item clicked it brings up a menu options
+    // to choose other services such as esi pay and tok combo
+    public void angleMenu(Context context){
+        AllAngleExpandableButton button = (AllAngleExpandableButton)findViewById(R.id.button_expandable);
+        final List<ButtonData> buttonDatas = new ArrayList<>();
+
+        int[] draw = {R.drawable.ic_phone_android_black_24dp, R.drawable.ic_power_black_24dp,
+                R.drawable.telikom, R.drawable.download};
+
+        for (int i = 0; i < draw.length; i++) {
+            ButtonData buttonData = (ButtonData) ButtonData.buildIconButton(this,draw[i], 5);
+            buttonDatas.add(buttonData);
+        }
+        button.setButtonDatas(buttonDatas);
+
+        button.setButtonEventListener(new ButtonEventListener() {
+            @Override
+            public void onButtonClicked(int index) {
+                //do whatever you want,the param index is counted from startAngle to endAngle,
+                //the value is from 1 to buttonCount - 1(buttonCount if aebIsSelectionMode=true)
+                if (index == 1){
+
+                    startActivity(new Intent(ScanCreditActivity.this, EsiPayActivity.class));
+                    Toast.makeText(ScanCreditActivity.this, "New", Toast.LENGTH_SHORT).show();
+                }
+                if (index == 2){
+
+                    startActivity(new Intent(ScanCreditActivity.this, MainActivity.class));
+
+
+                    Toast.makeText(ScanCreditActivity.this, "Requested", Toast.LENGTH_SHORT).show();
+                }
+
+
+                if (index == 3){
+                    Toast.makeText(ScanCreditActivity.this, "Completed", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(ScanCreditActivity.this, BemobileDataActivity.class));
+
+
+
+                }
+            }
+
+            @Override
+            public void onExpand() {
+
+            }
+
+            @Override
+            public void onCollapse() {
+
+            }
+        });
+    }
+
 
 }
