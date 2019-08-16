@@ -157,8 +157,8 @@ public class MainActivity extends AppCompatActivity {
         AllAngleExpandableButton button = (AllAngleExpandableButton)findViewById(R.id.button_expandable);
         final List<ButtonData> buttonDatas = new ArrayList<>();
 
-        int[] draw = {R.drawable.telikom, R.drawable.ic_power_black_24dp,
-                R.drawable.ic_launcher_background, R.drawable.ic_launcher_background, R.drawable.ic_launcher_background
+        int[] draw = {R.drawable.ic_phone_android_black_24dp, R.drawable.ic_power_black_24dp,
+                R.drawable.ic_camera_alt_black_24dp, R.drawable.ic_launcher_background, R.drawable.ic_launcher_background
                 , R.drawable.ic_launcher_background, R.drawable.ic_launcher_background};
 
         for (int i = 0; i < draw.length; i++) {

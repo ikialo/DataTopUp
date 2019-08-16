@@ -32,8 +32,11 @@ public class AdapterEsiPayRecycler extends   RecyclerView.Adapter <AdapterEsiPay
     @Override
     public void onBindViewHolder(@NonNull EsiPayViewHolder esiPayViewHolder, int i) {
 
-        esiPayViewHolder.meterNumber.setText(mNameDB.get(i).getMeterNumber());
-        esiPayViewHolder.name.setText(mNameDB.get(i).getName());
+        if (mNameDB.get(i).getMeterNumber()!= null && mNameDB.get(i).getName() != null){
+            esiPayViewHolder.meterNumber.setText(mNameDB.get(i).getMeterNumber());
+            esiPayViewHolder.name.setText(mNameDB.get(i).getName());
+        }
+
     }
 
     @Override

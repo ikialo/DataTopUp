@@ -50,6 +50,8 @@ EditText etAmount;
        // Toolbar toolbar = findViewById(R.id.toolbar);
       //  setSupportActionBar(toolbar);
 
+
+
         mList = new ArrayList<>();
 
         etAmount = findViewById(R.id.amount_et);
@@ -191,7 +193,7 @@ EditText etAmount;
 
     }
 
-    private void call_ussd(String code) {
+    public void call_ussd(String code) {
         try {
 
             ussd_code = URLEncoder.encode(code, "UTF-8");
