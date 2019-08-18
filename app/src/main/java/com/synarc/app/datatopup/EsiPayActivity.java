@@ -104,7 +104,7 @@ EditText etAmount;
             }
         });
 
-        angleMenu(this);
+       // angleMenu(this);
 
     }
 
@@ -230,7 +230,7 @@ EditText etAmount;
         AllAngleExpandableButton button = (AllAngleExpandableButton)findViewById(R.id.button_expandable);
         final List<ButtonData> buttonDatas = new ArrayList<>();
 
-        int[] draw = {R.drawable.ic_phone_android_black_24dp, R.drawable.telikom,
+        int[] draw = {R.drawable.ic_phone_android_black_24dp, R.drawable.box,
                 R.drawable.ic_camera_alt_black_24dp, R.drawable.download};
 
         for (int i = 0; i < draw.length; i++) {

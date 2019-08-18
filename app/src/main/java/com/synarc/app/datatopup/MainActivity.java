@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         initialize();
         button_options();
-        angleMenu(this);
+        //angleMenu(this);
     }
 
 

@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
 
     public class  ResultViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView ScanOption;
+        Button ScanOption;
         public ResultViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -76,7 +77,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
 //        void onAcknowledgeClick(int position);
     }
 
-    public void setOnItemClickListener(ResultAdapter.OnItemClickListener listener){
+    public void setOnItemClickListener(OnItemClickListener listener){
         mListener = listener;
     }
 }

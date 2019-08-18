@@ -3,23 +3,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorPageBack"
     android:layout_height="match_parent"
-    tools:context=".SplashScreen">
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:scaleType="fitXY"
+        android:id="@+id/background"
+        android:src="@drawable/component_1___1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/telikom_logo"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_alignStart="@+id/background"
+        android:layout_alignEnd="@+id/background"
+        android:layout_marginStart="105dp"
+        android:layout_marginEnd="99dp"
+        android:foregroundGravity="center"
+        android:src="@drawable/box" />
+
+    <ImageView
+        android:scaleType="fitXY"
+        android:id="@+id/top_path"
+        android:layout_width="match_parent"
+        android:layout_height="256dp"
+        android:layout_alignTop="@+id/telikom_logo"
+        android:layout_marginTop="0dp"
+        android:src="@drawable/path_2" />
+
+    <ImageView
+        android:scaleType="fitXY"
+        android:id="@+id/bottom_path"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:layout_alignBottom="@+id/telikom_logo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:src="@drawable/path_3" />
 
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="center"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="229dp"
-        android:layout_marginEnd="147dp"
-        android:layout_marginBottom="382dp"
-        android:src="@drawable/ic_phone_android_black_24dp" />
+        android:id="@+id/Name"
+        android:layout_width="match_parent"
+        android:layout_height="173dp"
+        android:src="@drawable/top_up_app" />
+
+
+
 
 </RelativeLayout>

@@ -159,7 +159,7 @@ public class BemobileDataActivity extends AppCompatActivity {
         final List<ButtonData> buttonDatas = new ArrayList<>();
 
         int[] draw = {R.drawable.ic_phone_android_black_24dp, R.drawable.ic_power_black_24dp,
-                R.drawable.ic_camera_alt_black_24dp, R.drawable.telikom};
+                R.drawable.ic_camera_alt_black_24dp, R.drawable.box};
 
         for (int i = 0; i < draw.length; i++) {
             ButtonData buttonData = (ButtonData) ButtonData.buildIconButton(this,draw[i], 5);

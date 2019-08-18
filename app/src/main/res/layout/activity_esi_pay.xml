@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorPageBack"
+    android:background="@drawable/back_blur"
     android:layout_height="match_parent"
     tools:context=".EsiPayActivity">
 
@@ -37,38 +37,38 @@
         tools:ignore="VectorDrawableCompat" />
 
 
-    <com.fangxu.allangleexpandablebutton.AllAngleExpandableButton
-        android:layout_margin="16dp"
-        android:id="@+id/button_expandable"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+    <!--<com.fangxu.allangleexpandablebutton.AllAngleExpandableButton-->
+        <!--android:layout_margin="16dp"-->
+        <!--android:id="@+id/button_expandable"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
 
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_marginTop="20dp"-->
 
-        app:aebAnimDurationMillis="175"
-        app:aebBlurBackground="true"
-        app:aebBlurRadius="10"
-        app:aebButtonElevation="4dp"
-        app:aebButtonGapDp="15dp"
-        app:aebEndAngleDegree="90"
-        app:aebIsSelectionMode="false"
-        app:aebMainButtonRotateAnimDurationMillis="1000"
-        app:aebMainButtonRotateDegree="-360"
-        app:aebMainButtonSizeDp="56dp"
-        app:aebMainButtonTextColor="#ffff5656"
-        app:aebMainButtonTextSizeSp="20dp"
-        app:aebMaskBackgroundColor="@color/colorAccent"
-        app:aebRippleColor="@color/colorAccent"
-        app:aebRippleEffect="true"
-        app:aebStartAngleDegree="90"
-        app:aebSubButtonSizeDp="46dp"
-        app:aebSubButtonTextColor="@color/colorAccent"
-        app:aebSubButtonTextSizeSp="14dp"
-        app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="end|bottom" />
+        <!--app:aebAnimDurationMillis="175"-->
+        <!--app:aebBlurBackground="true"-->
+        <!--app:aebBlurRadius="10"-->
+        <!--app:aebButtonElevation="4dp"-->
+        <!--app:aebButtonGapDp="15dp"-->
+        <!--app:aebEndAngleDegree="90"-->
+        <!--app:aebIsSelectionMode="false"-->
+        <!--app:aebMainButtonRotateAnimDurationMillis="1000"-->
+        <!--app:aebMainButtonRotateDegree="-360"-->
+        <!--app:aebMainButtonSizeDp="56dp"-->
+        <!--app:aebMainButtonTextColor="#ffff5656"-->
+        <!--app:aebMainButtonTextSizeSp="20dp"-->
+        <!--app:aebMaskBackgroundColor="@color/colorAccent"-->
+        <!--app:aebRippleColor="@color/colorAccent"-->
+        <!--app:aebRippleEffect="true"-->
+        <!--app:aebStartAngleDegree="90"-->
+        <!--app:aebSubButtonSizeDp="46dp"-->
+        <!--app:aebSubButtonTextColor="@color/colorAccent"-->
+        <!--app:aebSubButtonTextSizeSp="14dp"-->
+        <!--app:layout_anchor="@+id/include"-->
+        <!--app:layout_anchorGravity="end|bottom" />-->
 
 
 

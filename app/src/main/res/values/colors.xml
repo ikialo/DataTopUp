@@ -3,6 +3,11 @@
     <color name="colorPrimary">#A504C0</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#CDDC39</color>
-    <color name="colorWhite">#E6FFF9F9</color>
-    <color name="colorPageBack">#0F000000</color>
+    <color name="colorWhite">#77FFF9F9</color>
+    <color name="colorWhiteET">#FFFFFF</color>
+
+    <color name="colorGreen">#A40BB112</color>
+    <color name="colorGreenOppacity">#A46FC071</color>
+
+
 </resources>

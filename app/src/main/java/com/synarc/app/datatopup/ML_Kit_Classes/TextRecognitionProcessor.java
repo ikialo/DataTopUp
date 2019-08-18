@@ -64,12 +64,25 @@ public class TextRecognitionProcessor extends VisionProcessorBase<FirebaseVision
         for (int i = 0; i < blocks.size(); i++) {
             List<FirebaseVisionText.Line> lines = blocks.get(i).getLines();
             for (int j = 0; j < lines.size(); j++) {
+
+
+
+
                 List<FirebaseVisionText.Element> elements = lines.get(j).getElements();
+
+
+
                 for (int k = 0; k < elements.size(); k++) {
+
 
 
                     if (lines.get(j).getElements().size() == 3) {
                         if (elements.get(k).getText().length() == 4) {
+
+
+
+
+
                             GraphicOverlay.Graphic textGraphic = new TextGraphic(graphicOverlay,
                                     elements.get(k));
                             graphicOverlay.add(textGraphic);
@@ -81,15 +94,17 @@ public class TextRecognitionProcessor extends VisionProcessorBase<FirebaseVision
         }
         graphicOverlay.postInvalidate();
 
-        activityInstance
-                .capture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                activityInstance.displayList.clear();
-                activityInstance.updateSpinnerFromTextResults(results);
-            }
-        });
+        activityInstance.updateSpinnerFromTextResults(results);
+
+//        activityInstance
+//                .capture.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                activityInstance.displayList.clear();
+//
+//            }
+//        });
 
         ///
 
@@ -99,4 +114,15 @@ public class TextRecognitionProcessor extends VisionProcessorBase<FirebaseVision
     protected void onFailure(@NonNull Exception e) {
         Log.w(TAG, "Text detection failed." + e);
     }
+
+
+//    Boolean IsDigitsOnly(String str)
+//    {
+//        for ()
+//        {
+//
+//        }
+//
+//        return true;
+//    }
 }

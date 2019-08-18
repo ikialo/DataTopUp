@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_blur"
+    tools:context=".StartActivity">
+
+
+
+
+    <LinearLayout
+        android:layout_marginTop="150dp"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_marginRight="50dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:onClick="Telikom_Click"
+                android:id="@+id/tel"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/telikom_button" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:src="@drawable/data_top_up" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:onClick="EsiPay_Click"
+                android:id="@+id/cam"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/powerpress" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:src="@drawable/esi_pay" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="161dp"
+        android:layout_gravity="center"
+
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/pow"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/cam_button"
+
+            android:onClick="Scan_Click" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:src="@drawable/scan_voucher_number" />
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

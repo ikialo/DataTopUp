@@ -55,8 +55,10 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
     public Button capture;
     private String ussd_code;
     private Intent dial;
+    private  char [] voucher;
+    int voucher_index =0;
 
-    private Button btnSwitch;
+
 
 
     private android.hardware.Camera camera;
@@ -73,7 +75,7 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
 
         xmlViews();
 
-        initializeView();
+       // initializeView();
 
         chechFlash();
 
@@ -82,19 +84,6 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
         /*
          * Switch button click event to toggle flash on/off
          */
-        btnSwitch.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (isFlashOn) {
-                    // turn off flash
-                    turnOffFlash();
-                } else {
-                    // turn on flash
-                    turnOnFlash();
-                }
-            }
-        });
 
 
         if (preview == null) {
@@ -109,13 +98,15 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
         } else {
             getRuntimePermissions();
         }
-        angleMenu(this);
-        capture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startCameraSource();
-            }
-        });
+       // angleMenu(this);
+//        capture.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startCameraSource();
+//            }
+//        });
+
+
 
     }
 
@@ -202,7 +193,8 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
         displayList = new ArrayList<>();
         resultSpinner.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         displayAdapter = new ResultAdapter(this, displayList);
-        displayAdapter.setOnItemClickListener(this);
+        Log.d(TAG, "initializeView: On click listener set");
+        displayAdapter.setOnItemClickListener(ScanCreditActivity.this);
         resultSpinner.setAdapter(displayAdapter);
         resultContainer.getLayoutParams().height = (int) (Resources.getSystem().getDisplayMetrics().heightPixels * 0.65);
 
@@ -211,13 +203,13 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
     private void xmlViews() {
         // getting views from the xml
 
-        resultContainer = findViewById(R.id.resultsContainer);
-        resultSpinner = findViewById(R.id.results_spinner);
+        //resultContainer = findViewById(R.id.resultsContainer);
+      //  resultSpinner = findViewById(R.id.results_spinner);
         preview =  findViewById(R.id.Preview);
         graphicOverlay = findViewById(R.id.Overlay);
-        capture = findViewById(R.id.capture);
+      //  capture = findViewById(R.id.capture);
         // flash switch button
-        btnSwitch =  findViewById(R.id.flash);
+       // btnSwitch =  findViewById(R.id.flash);
     }
  // Function to check if all permissions given by the user
     private boolean allPermissionsGranted() {
@@ -289,9 +281,43 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
                 for (FirebaseVisionText.Element eachElement : eachLine.getElements()) {
                    // if (!displayList.contains(eachElement.getText()) && displayList.size() <= 9) {
 
-                    if (eachLine.getElements().size() == 3) {
+                    if (eachLine.getElements().size() == 3 && eachElement.getText().length() == 4) {
+
+
+                        Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
+                        String voucherNo = eachLine.getText() ;//displayList.get(position);
+
+                        voucherNo = voucherNo.replaceAll("\\s", "") ;
+
+
+                        if (voucherNo.length() == 12){
+
+                            String code = "*121*"+voucherNo+"#";
+
+                            Toast.makeText(this, code, Toast.LENGTH_LONG).show();
+
+                            call_ussd(code);
+                        }
+
+
+
                         if (eachElement.getText().length() == 4) {
 
+
+//                            for (int l = 0; l< 4;l++){
+//
+//                                if (Character.isDigit(eachElement.getText().charAt(l))){
+//
+//                                    voucher[voucher_index] = eachElement.getText().charAt(l);
+//                                    voucher_index++;
+//                                    if (voucher_index ==12){
+//
+//                                        voucher_index =0;
+//                                    }
+//
+//
+//                                }
+//                            }
                           //  String number = eachLine.getText();
 
 
@@ -308,7 +334,9 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
 //
 //                            }
 
-                            displayList.add(eachLine.getText());
+
+
+                          //  displayList.add(eachLine.getText());
 
                             Log.d(TAG, "updateSpinnerFromTextResults: " + eachElement.getText());
                         }
@@ -320,25 +348,10 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
             }
         }
 
-        displayAdapter.notifyDataSetChanged();
+       // displayAdapter.notifyDataSetChanged();
     }
 
 
-    @Override
-    public void onItemClick(int position) {
-
-       String voucherNo = displayList.get(position);
-
-        voucherNo = voucherNo.replaceAll("\\s", "") ;
-
-        String code = "*121*"+voucherNo+"#";
-
-        Toast.makeText(this, code, Toast.LENGTH_SHORT).show();
-
-        call_ussd(code);
-
-
-    }
 
     public void call_ussd(String code) {
         try {
@@ -435,7 +448,7 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
         final List<ButtonData> buttonDatas = new ArrayList<>();
 
         int[] draw = {R.drawable.ic_phone_android_black_24dp, R.drawable.ic_power_black_24dp,
-                R.drawable.telikom, R.drawable.download};
+                R.drawable.ic_phone_android_black_24dp, R.drawable.download};
 
         for (int i = 0; i < draw.length; i++) {
             ButtonData buttonData = (ButtonData) ButtonData.buildIconButton(this,draw[i], 5);
@@ -484,4 +497,20 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
     }
 
 
+    @Override
+    public void onItemClick(int position) {
+        Log.d(TAG, "onItemClick: On click entered position"+ position+1);
+
+        Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
+        String voucherNo = displayList.get(position);
+
+        voucherNo = voucherNo.replaceAll("\\s", "") ;
+
+        String code = "*121*"+voucherNo+"#";
+
+        Toast.makeText(this, code, Toast.LENGTH_SHORT).show();
+
+        call_ussd(code);
+
+    }
 }
