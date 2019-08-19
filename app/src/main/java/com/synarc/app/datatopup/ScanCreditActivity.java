@@ -10,6 +10,7 @@ import android.content.res.Resources;
 import android.hardware.Camera;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -40,7 +41,7 @@ import java.security.Policy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScanCreditActivity extends AppCompatActivity implements ResultAdapter.OnItemClickListener {
+public class ScanCreditActivity extends AppCompatActivity  {
 
     private static final String TAG = "LauncherActivity";
     private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 358;
@@ -50,13 +51,15 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
     private RecyclerView resultSpinner;// To display the results recieved from Firebase MLKit
     private static final int PERMISSION_REQUESTS = 1; // to handle the runtime permissions
     public List<String> displayList; // to manage the adapter of the results recieved
-    private ResultAdapter displayAdapter; // adapter bound with the result recycler view ---> Contains a simple textview with background
+   // private ResultAdapter displayAdapter; // adapter bound with the result recycler view ---> Contains a simple textview with background
     private LinearLayout resultContainer;// just another layout to maintain the symmetry
     public Button capture;
     private String ussd_code;
     private Intent dial;
     private  char [] voucher;
     int voucher_index =0;
+
+    public boolean continue_scan = true;
 
 
 
@@ -186,19 +189,19 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
     }
 
 
-    @SuppressLint("StringFormatInvalid")
-    private void initializeView() {
-
-        // intializing views
-        displayList = new ArrayList<>();
-        resultSpinner.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        displayAdapter = new ResultAdapter(this, displayList);
-        Log.d(TAG, "initializeView: On click listener set");
-        displayAdapter.setOnItemClickListener(ScanCreditActivity.this);
-        resultSpinner.setAdapter(displayAdapter);
-        resultContainer.getLayoutParams().height = (int) (Resources.getSystem().getDisplayMetrics().heightPixels * 0.65);
-
-    }
+//    @SuppressLint("StringFormatInvalid")
+//    private void initializeView() {
+//
+//        // intializing views
+//        displayList = new ArrayList<>();
+//        resultSpinner.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+//      //  displayAdapter = new ResultAdapter(this, displayList);
+//        Log.d(TAG, "initializeView: On click listener set");
+//      //  displayAdapter.setOnItemClickListener(ScanCreditActivity.this);
+//      //  resultSpinner.setAdapter(displayAdapter);
+//        resultContainer.getLayoutParams().height = (int) (Resources.getSystem().getDisplayMetrics().heightPixels * 0.65);
+//
+//    }
 
     private void xmlViews() {
         // getting views from the xml
@@ -292,54 +295,74 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
 
                         if (voucherNo.length() == 12){
 
+
+
                             String code = "*121*"+voucherNo+"#";
 
                             Toast.makeText(this, code, Toast.LENGTH_LONG).show();
 
                             call_ussd(code);
+
+
+                            continue_scan = false;
+                            finish();
+
+//                            new Handler().postDelayed(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    finish();
+//
+//                                    Toast.makeText(ScanCreditActivity.this, " Reading Voucher", Toast.LENGTH_SHORT).show();
+//                                }
+//                            }, 1000);
+
+
+
+
+
                         }
 
 
 
-                        if (eachElement.getText().length() == 4) {
-
-
-//                            for (int l = 0; l< 4;l++){
-//
-//                                if (Character.isDigit(eachElement.getText().charAt(l))){
-//
-//                                    voucher[voucher_index] = eachElement.getText().charAt(l);
-//                                    voucher_index++;
-//                                    if (voucher_index ==12){
-//
-//                                        voucher_index =0;
-//                                    }
+//                        if (eachElement.getText().length() == 4) {
 //
 //
-//                                }
-//                            }
-                          //  String number = eachLine.getText();
-
-
-
-
-//                            number = number.replaceAll("\\s", "") ;
+////                            for (int l = 0; l< 4;l++){
+////
+////                                if (Character.isDigit(eachElement.getText().charAt(l))){
+////
+////                                    voucher[voucher_index] = eachElement.getText().charAt(l);
+////                                    voucher_index++;
+////                                    if (voucher_index ==12){
+////
+////                                        voucher_index =0;
+////                                    }
+////
+////
+////                                }
+////                            }
+//                          //  String number = eachLine.getText();
 //
 //
-//                            for (int p = 0; p < number.length() ; p++){
 //
-//                                if (Character.isDigit(number.charAt(p))){
 //
-//                                }
+////                            number = number.replaceAll("\\s", "") ;
+////
+////
+////                            for (int p = 0; p < number.length() ; p++){
+////
+////                                if (Character.isDigit(number.charAt(p))){
+////
+////                                }
+////
+////                            }
 //
-//                            }
-
-
-
-                          //  displayList.add(eachLine.getText());
-
-                            Log.d(TAG, "updateSpinnerFromTextResults: " + eachElement.getText());
-                        }
+//
+//
+//                          //  displayList.add(eachLine.getText());
+//
+//                            Log.d(TAG, "updateSpinnerFromTextResults: " + eachElement.getText());
+//                        }
                     }
 
 
@@ -381,46 +404,46 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
     /*
      * Turning On flash
      */
-    private void turnOnFlash() {
-        if (!isFlashOn) {
-            if (camera == null || params == null) {
-                return;
-            }
-            // play sound
-          //  playSound();
-
-            params = camera.getParameters();
-            params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-            camera.setParameters(params);
-            camera.startPreview();
-            isFlashOn = true;
-
-            // changing button/switch image
-
-        }
-
-    }
+//    private void turnOnFlash() {
+//        if (!isFlashOn) {
+//            if (camera == null || params == null) {
+//                return;
+//            }
+//            // play sound
+//          //  playSound();
+//
+//            params = camera.getParameters();
+//            params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+//            camera.setParameters(params);
+//            camera.startPreview();
+//            isFlashOn = true;
+//
+//            // changing button/switch image
+//
+//        }
+//
+//    }
 
     /*
      * Turning Off flash
      */
-    private void turnOffFlash() {
-        if (isFlashOn) {
-            if (camera == null || params == null) {
-                return;
-            }
-            // play sound
-            //playSound();
-
-            params = camera.getParameters();
-            params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-            camera.setParameters(params);
-            camera.stopPreview();
-            isFlashOn = false;
-
-            // changing button/switch image
-        }
-    }
+//    private void turnOffFlash() {
+//        if (isFlashOn) {
+//            if (camera == null || params == null) {
+//                return;
+//            }
+//            // play sound
+//            //playSound();
+//
+//            params = camera.getParameters();
+//            params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+//            camera.setParameters(params);
+//            camera.stopPreview();
+//            isFlashOn = false;
+//
+//            // changing button/switch image
+//        }
+//    }
 
     /*
      * Playing sound will play button toggle sound on flash on / off
@@ -441,76 +464,76 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
 //        });
 //        mp.start();
 //    }
-    // on button telikom item clicked it brings up a menu options
-    // to choose other services such as esi pay and tok combo
-    public void angleMenu(Context context){
-        AllAngleExpandableButton button = (AllAngleExpandableButton)findViewById(R.id.button_expandable);
-        final List<ButtonData> buttonDatas = new ArrayList<>();
+//    // on button telikom item clicked it brings up a menu options
+//    // to choose other services such as esi pay and tok combo
+//    public void angleMenu(Context context){
+//        AllAngleExpandableButton button = (AllAngleExpandableButton)findViewById(R.id.button_expandable);
+//        final List<ButtonData> buttonDatas = new ArrayList<>();
+//
+//        int[] draw = {R.drawable.ic_phone_android_black_24dp, R.drawable.ic_power_black_24dp,
+//                R.drawable.ic_phone_android_black_24dp, R.drawable.download};
+//
+//        for (int i = 0; i < draw.length; i++) {
+//            ButtonData buttonData = (ButtonData) ButtonData.buildIconButton(this,draw[i], 5);
+//            buttonDatas.add(buttonData);
+//        }
+//        button.setButtonDatas(buttonDatas);
+//
+//        button.setButtonEventListener(new ButtonEventListener() {
+//            @Override
+//            public void onButtonClicked(int index) {
+//                //do whatever you want,the param index is counted from startAngle to endAngle,
+//                //the value is from 1 to buttonCount - 1(buttonCount if aebIsSelectionMode=true)
+//                if (index == 1){
+//
+//                    startActivity(new Intent(ScanCreditActivity.this, EsiPayActivity.class));
+//                    Toast.makeText(ScanCreditActivity.this, "New", Toast.LENGTH_SHORT).show();
+//                }
+//                if (index == 2){
+//
+//                    startActivity(new Intent(ScanCreditActivity.this, MainActivity.class));
+//
+//
+//                    Toast.makeText(ScanCreditActivity.this, "Requested", Toast.LENGTH_SHORT).show();
+//                }
+//
+//
+//                if (index == 3){
+//                    Toast.makeText(ScanCreditActivity.this, "Completed", Toast.LENGTH_SHORT).show();
+//                    startActivity(new Intent(ScanCreditActivity.this, BemobileDataActivity.class));
+//
+//
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onExpand() {
+//
+//            }
+//
+//            @Override
+//            public void onCollapse() {
+//
+//            }
+//        });
+//    }
 
-        int[] draw = {R.drawable.ic_phone_android_black_24dp, R.drawable.ic_power_black_24dp,
-                R.drawable.ic_phone_android_black_24dp, R.drawable.download};
-
-        for (int i = 0; i < draw.length; i++) {
-            ButtonData buttonData = (ButtonData) ButtonData.buildIconButton(this,draw[i], 5);
-            buttonDatas.add(buttonData);
-        }
-        button.setButtonDatas(buttonDatas);
-
-        button.setButtonEventListener(new ButtonEventListener() {
-            @Override
-            public void onButtonClicked(int index) {
-                //do whatever you want,the param index is counted from startAngle to endAngle,
-                //the value is from 1 to buttonCount - 1(buttonCount if aebIsSelectionMode=true)
-                if (index == 1){
-
-                    startActivity(new Intent(ScanCreditActivity.this, EsiPayActivity.class));
-                    Toast.makeText(ScanCreditActivity.this, "New", Toast.LENGTH_SHORT).show();
-                }
-                if (index == 2){
-
-                    startActivity(new Intent(ScanCreditActivity.this, MainActivity.class));
-
-
-                    Toast.makeText(ScanCreditActivity.this, "Requested", Toast.LENGTH_SHORT).show();
-                }
-
-
-                if (index == 3){
-                    Toast.makeText(ScanCreditActivity.this, "Completed", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(ScanCreditActivity.this, BemobileDataActivity.class));
-
-
-
-                }
-            }
-
-            @Override
-            public void onExpand() {
-
-            }
-
-            @Override
-            public void onCollapse() {
-
-            }
-        });
-    }
-
-
-    @Override
-    public void onItemClick(int position) {
-        Log.d(TAG, "onItemClick: On click entered position"+ position+1);
-
-        Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
-        String voucherNo = displayList.get(position);
-
-        voucherNo = voucherNo.replaceAll("\\s", "") ;
-
-        String code = "*121*"+voucherNo+"#";
-
-        Toast.makeText(this, code, Toast.LENGTH_SHORT).show();
-
-        call_ussd(code);
-
-    }
+//
+//    @Override
+//    public void onItemClick(int position) {
+//        Log.d(TAG, "onItemClick: On click entered position"+ position+1);
+//
+//        Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
+//        String voucherNo = displayList.get(position);
+//
+//        voucherNo = voucherNo.replaceAll("\\s", "") ;
+//
+//        String code = "*121*"+voucherNo+"#";
+//
+//        Toast.makeText(this, code, Toast.LENGTH_SHORT).show();
+//
+//        call_ussd(code);
+//
+//    }
 }

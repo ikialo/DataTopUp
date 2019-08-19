@@ -226,59 +226,6 @@ EditText etAmount;
 
 
 
-    public void angleMenu(Context context){
-        AllAngleExpandableButton button = (AllAngleExpandableButton)findViewById(R.id.button_expandable);
-        final List<ButtonData> buttonDatas = new ArrayList<>();
-
-        int[] draw = {R.drawable.ic_phone_android_black_24dp, R.drawable.box,
-                R.drawable.ic_camera_alt_black_24dp, R.drawable.download};
-
-        for (int i = 0; i < draw.length; i++) {
-            ButtonData buttonData = (ButtonData) ButtonData.buildIconButton(this,draw[i], 5);
-            buttonDatas.add(buttonData);
-        }
-        button.setButtonDatas(buttonDatas);
-
-        button.setButtonEventListener(new ButtonEventListener() {
-            @Override
-            public void onButtonClicked(int index) {
-                //do whatever you want,the param index is counted from startAngle to endAngle,
-                //the value is from 1 to buttonCount - 1(buttonCount if aebIsSelectionMode=true)
-                if (index == 1){
-
-                    startActivity(new Intent(EsiPayActivity.this, MainActivity.class));
-                    Toast.makeText(EsiPayActivity.this, "New", Toast.LENGTH_SHORT).show();
-                }
-                if (index == 2){
-
-                    startActivity(new Intent(EsiPayActivity.this, ScanCreditActivity.class));
-
-
-                    Toast.makeText(EsiPayActivity.this, "Requested", Toast.LENGTH_SHORT).show();
-                }
-
-
-                if (index == 3){
-                    Toast.makeText(EsiPayActivity.this, "Completed", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(EsiPayActivity.this, BemobileDataActivity.class));
-
-
-
-                }
-            }
-
-            @Override
-            public void onExpand() {
-
-            }
-
-            @Override
-            public void onCollapse() {
-
-            }
-        });
-    }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode,

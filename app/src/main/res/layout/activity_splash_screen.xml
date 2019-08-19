@@ -9,7 +9,7 @@
     <ImageView
         android:scaleType="fitXY"
         android:id="@+id/background"
-        android:src="@drawable/component_1___1"
+        android:src="@drawable/back_blur"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

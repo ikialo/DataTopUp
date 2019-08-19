@@ -12,6 +12,18 @@
     tools:context=".ScanCreditActivity"
     android:orientation="vertical">
 
+
+    <ImageView
+        android:layout_width="399dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/scan_voucher_number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.synarc.app.datatopup.ML_Kit_Classes.CameraSourcePreview
         android:id="@+id/Preview"
         android:layout_width="match_parent"

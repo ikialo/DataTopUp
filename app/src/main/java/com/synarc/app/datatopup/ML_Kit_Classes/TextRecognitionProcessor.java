@@ -52,50 +52,43 @@ public class TextRecognitionProcessor extends VisionProcessorBase<FirebaseVision
             @NonNull GraphicOverlay graphicOverlay) {
 
 
+        if (activityInstance.continue_scan) {
+            graphicOverlay.clear();
 
-        graphicOverlay.clear();
-
-        if (originalCameraImage != null) {
-            CameraImageGraphic imageGraphic = new CameraImageGraphic(graphicOverlay,
-                    originalCameraImage);
-            graphicOverlay.add(imageGraphic);
-        }
-        List<FirebaseVisionText.TextBlock> blocks = results.getTextBlocks();
-        for (int i = 0; i < blocks.size(); i++) {
-            List<FirebaseVisionText.Line> lines = blocks.get(i).getLines();
-            for (int j = 0; j < lines.size(); j++) {
-
-
+            if (originalCameraImage != null) {
+                CameraImageGraphic imageGraphic = new CameraImageGraphic(graphicOverlay,
+                        originalCameraImage);
+                graphicOverlay.add(imageGraphic);
+            }
+            List<FirebaseVisionText.TextBlock> blocks = results.getTextBlocks();
+            for (int i = 0; i < blocks.size(); i++) {
+                List<FirebaseVisionText.Line> lines = blocks.get(i).getLines();
+                for (int j = 0; j < lines.size(); j++) {
 
 
-                List<FirebaseVisionText.Element> elements = lines.get(j).getElements();
+                    List<FirebaseVisionText.Element> elements = lines.get(j).getElements();
 
 
-
-                for (int k = 0; k < elements.size(); k++) {
-
+                    for (int k = 0; k < elements.size(); k++) {
 
 
-                    if (lines.get(j).getElements().size() == 3) {
-                        if (elements.get(k).getText().length() == 4) {
+                        if (lines.get(j).getElements().size() == 3) {
+                            if (elements.get(k).getText().length() == 4) {
 
 
+                                GraphicOverlay.Graphic textGraphic = new TextGraphic(graphicOverlay,
+                                        elements.get(k));
+                                graphicOverlay.add(textGraphic);
+                            }
 
-
-
-                            GraphicOverlay.Graphic textGraphic = new TextGraphic(graphicOverlay,
-                                    elements.get(k));
-                            graphicOverlay.add(textGraphic);
                         }
-
                     }
                 }
             }
-        }
-        graphicOverlay.postInvalidate();
+            graphicOverlay.postInvalidate();
 
 
-        activityInstance.updateSpinnerFromTextResults(results);
+            activityInstance.updateSpinnerFromTextResults(results);
 
 //        activityInstance
 //                .capture.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +99,9 @@ public class TextRecognitionProcessor extends VisionProcessorBase<FirebaseVision
 //            }
 //        });
 
-        ///
+            ///
+
+        }
 
     }
 

@@ -13,13 +13,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_phone_android_black_24dp"
+        android:icon="@drawable/teliapp"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_phone_android_black_24dp"
+        android:roundIcon="@drawable/teliapp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".StartActivity"></activity>
-        <activity android:name=".BemobileDataActivity" />
         <activity android:name=".ScanCreditActivity" />
 
         <meta-data
