@@ -304,6 +304,8 @@ public class ScanCreditActivity extends AppCompatActivity  {
                             call_ussd(code);
 
 
+                            // continue scan variable is used as a public variable so  setting it to
+                            // false affects the read in TextRecognitionProcessor.java class
                             continue_scan = false;
                             finish();
 
