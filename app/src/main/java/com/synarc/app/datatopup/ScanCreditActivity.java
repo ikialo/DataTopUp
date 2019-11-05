@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.hardware.Camera;
 import android.media.MediaPlayer;
+import android.net.ParseException;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
@@ -285,107 +286,106 @@ public class ScanCreditActivity extends AppCompatActivity  {
                    // if (!displayList.contains(eachElement.getText()) && displayList.size() <= 9) {
 
                     if (eachLine.getElements().size() == 3 && eachElement.getText().length() == 4) {
-
-
                         Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
                         String voucherNo = eachLine.getText() ;//displayList.get(position);
-
+                        // replace the space
                         voucherNo = voucherNo.replaceAll("\\s", "") ;
 
 
                         if (voucherNo.length() == 12){
 
 
+                            if (!hasLetter(voucherNo)) {
 
-                            String code = "*121*"+voucherNo+"#";
+                                String code = "*121*" + voucherNo + "#";
 
-                            Toast.makeText(this, code, Toast.LENGTH_LONG).show();
+                                Toast.makeText(this, code, Toast.LENGTH_LONG).show();
+                                call_ussd(code);
+                                // continue scan variable is used as a public variable so  setting it to
+                                // false affects the read in TextRecognitionProcessor.java class
+                                continue_scan = false;
+                                finish();
+                            }
+                        }
+                    }
+                    if (( eachLine.getElements().size() == 3 || eachLine.getElements().size() == 4 ||eachLine.getElements().size() == 5)&&(eachElement.getText().length() == 2 || eachElement.getText().length() == 3
 
-                            call_ussd(code);
-
-
-                            // continue scan variable is used as a public variable so  setting it to
-                            // false affects the read in TextRecognitionProcessor.java class
-                            continue_scan = false;
-                            finish();
-
-//                            new Handler().postDelayed(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    finish();
-//
-//                                    Toast.makeText(ScanCreditActivity.this, " Reading Voucher", Toast.LENGTH_SHORT).show();
-//                                }
-//                            }, 1000);
+                            || eachElement.getText().length() == 4)) {
 
 
+                        Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
+                        String voucherNo = eachLine.getText() ;//displayList.get(position);
 
 
+                        // replace the space
+                        voucherNo = voucherNo.replaceAll("\\s", "") ;
+
+
+                        if (voucherNo.length() == 12 || voucherNo.length() == 14 || voucherNo.length() == 13){
+
+
+                            if (!hasLetter(voucherNo)) {
+                                String code = "*121*" + voucherNo + "#";
+
+                                Toast.makeText(this, code, Toast.LENGTH_LONG).show();
+
+                                call_ussd(code);
+                                // continue scan variable is used as a public variable so  setting it to
+                                // false affects the read in TextRecognitionProcessor.java class
+                                continue_scan = false;
+                                finish();
+                            }
 
                         }
-
-
-
-//                        if (eachElement.getText().length() == 4) {
-//
-//
-////                            for (int l = 0; l< 4;l++){
-////
-////                                if (Character.isDigit(eachElement.getText().charAt(l))){
-////
-////                                    voucher[voucher_index] = eachElement.getText().charAt(l);
-////                                    voucher_index++;
-////                                    if (voucher_index ==12){
-////
-////                                        voucher_index =0;
-////                                    }
-////
-////
-////                                }
-////                            }
-//                          //  String number = eachLine.getText();
-//
-//
-//
-//
-////                            number = number.replaceAll("\\s", "") ;
-////
-////
-////                            for (int p = 0; p < number.length() ; p++){
-////
-////                                if (Character.isDigit(number.charAt(p))){
-////
-////                                }
-////
-////                            }
-//
-//
-//
-//                          //  displayList.add(eachLine.getText());
-//
-//                            Log.d(TAG, "updateSpinnerFromTextResults: " + eachElement.getText());
-//                        }
                     }
 
 
-                   // }
+
                 }
             }
         }
 
-       // displayAdapter.notifyDataSetChanged();
     }
 
+//    private boolean hasLetter(String number) {
+//
+//
+//        try {
+//            Integer.parseInt(number);
+//            return false;
+//        }
+//        catch(NumberFormatException e){
+//
+//            Toast.makeText(this, "Has Letter: " + number, Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
+//    }
 
+    public boolean hasLetter(String input){
+        try{
+            Long num = Long.parseLong(input);
+
+            Toast.makeText(this, "Has Number Only: " + num, Toast.LENGTH_SHORT).show();
+
+
+            return false;
+        }catch(ParseException e){
+            Toast.makeText(this, "Has Letter: " + input, Toast.LENGTH_SHORT).show();
+
+            return true;
+        }
+        catch(NumberFormatException e){
+
+            Toast.makeText(this, "Has Letter: " + input, Toast.LENGTH_SHORT).show();
+            return true;
+        }
+    }
 
     public void call_ussd(String code) {
         try {
 
             ussd_code = URLEncoder.encode(code, "UTF-8");
-
-
             dial = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + ussd_code));
-
             //check if permission is granted
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
 

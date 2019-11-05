@@ -39,6 +39,7 @@ public class AdapterEsiPayRecycler extends   RecyclerView.Adapter <AdapterEsiPay
 
     }
 
+
     @Override
     public int getItemCount() {
         return mNameDB.size();

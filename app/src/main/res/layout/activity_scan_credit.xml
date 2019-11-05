@@ -50,36 +50,6 @@
 
 
 
-    <!--<LinearLayout-->
-        <!--android:layout_weight="65"-->
-        <!--android:id="@+id/resultsContainer"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:gravity="bottom">-->
-
-        <!--<android.support.v7.widget.RecyclerView-->
-            <!--android:id="@+id/results_spinner"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--/>-->
-    <!--</LinearLayout>-->
-
-
-
-
-
-    <!--<Button-->
-        <!--android:id="@+id/capture"-->
-        <!--android:layout_width="65dp"-->
-        <!--android:layout_height="65dp"-->
-        <!--android:layout_gravity="center"-->
-
-        <!--android:background="@drawable/cam_button_capture"-->
-        <!--android:gravity="center"-->
-        <!--android:paddingTop="2dp"-->
-        <!--android:text="" />-->
-
-
 
 
 
