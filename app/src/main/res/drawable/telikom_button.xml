@@ -2,10 +2,10 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_pressed="true"
-        android:drawable="@drawable/telikom_press" />
+        android:drawable="@drawable/telikom" />
 
     <item
-        android:drawable="@drawable/telikom" />
+        android:drawable="@drawable/telikom_default" />
 
 
 </selector>

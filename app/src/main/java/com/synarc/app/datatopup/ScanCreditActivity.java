@@ -42,7 +42,7 @@ import java.security.Policy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScanCreditActivity extends AppCompatActivity  {
+public class ScanCreditActivity extends AppCompatActivity {
 
     private static final String TAG = "LauncherActivity";
     private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 358;
@@ -52,17 +52,15 @@ public class ScanCreditActivity extends AppCompatActivity  {
     private RecyclerView resultSpinner;// To display the results recieved from Firebase MLKit
     private static final int PERMISSION_REQUESTS = 1; // to handle the runtime permissions
     public List<String> displayList; // to manage the adapter of the results recieved
-   // private ResultAdapter displayAdapter; // adapter bound with the result recycler view ---> Contains a simple textview with background
+    // private ResultAdapter displayAdapter; // adapter bound with the result recycler view ---> Contains a simple textview with background
     private LinearLayout resultContainer;// just another layout to maintain the symmetry
     public Button capture;
     private String ussd_code;
     private Intent dial;
-    private  char [] voucher;
-    int voucher_index =0;
+    private char[] voucher;
+    int voucher_index = 0;
 
     public boolean continue_scan = true;
-
-
 
 
     private android.hardware.Camera camera;
@@ -79,7 +77,7 @@ public class ScanCreditActivity extends AppCompatActivity  {
 
         xmlViews();
 
-       // initializeView();
+        // initializeView();
 
         chechFlash();
 
@@ -102,14 +100,13 @@ public class ScanCreditActivity extends AppCompatActivity  {
         } else {
             getRuntimePermissions();
         }
-       // angleMenu(this);
+        // angleMenu(this);
 //        capture.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                startCameraSource();
 //            }
 //        });
-
 
 
     }
@@ -149,7 +146,6 @@ public class ScanCreditActivity extends AppCompatActivity  {
     }
 
 
-
     // Actual code to start the camera
     private void startCameraSource() {
         if (cameraSource != null) {
@@ -160,7 +156,7 @@ public class ScanCreditActivity extends AppCompatActivity  {
                 if (graphicOverlay == null) {
                     Log.d(TAG, "startCameraSource resume: graphOverlay is null ");
                 }
-                preview.start(cameraSource,graphicOverlay);
+                preview.start(cameraSource, graphicOverlay);
             } catch (IOException e) {
                 Log.d(TAG, "startCameraSource : Unable to start camera source." + e.getMessage());
                 cameraSource.release();
@@ -175,6 +171,7 @@ public class ScanCreditActivity extends AppCompatActivity  {
         super.onResume();
         startCameraSource();
     }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -208,14 +205,15 @@ public class ScanCreditActivity extends AppCompatActivity  {
         // getting views from the xml
 
         //resultContainer = findViewById(R.id.resultsContainer);
-      //  resultSpinner = findViewById(R.id.results_spinner);
-        preview =  findViewById(R.id.Preview);
+        //  resultSpinner = findViewById(R.id.results_spinner);
+        preview = findViewById(R.id.Preview);
         graphicOverlay = findViewById(R.id.Overlay);
-      //  capture = findViewById(R.id.capture);
+        //  capture = findViewById(R.id.capture);
         // flash switch button
-       // btnSwitch =  findViewById(R.id.flash);
+        // btnSwitch =  findViewById(R.id.flash);
     }
- // Function to check if all permissions given by the user
+
+    // Function to check if all permissions given by the user
     private boolean allPermissionsGranted() {
         for (String permission : getRequiredPermissions()) {
             if (!isPermissionGranted(this, permission)) {
@@ -266,7 +264,6 @@ public class ScanCreditActivity extends AppCompatActivity  {
         try {
 
 
-
             cameraSource.setMachineLearningFrameProcessor(new TextRecognitionProcessor(this));
 
         } catch (Exception e) {
@@ -280,19 +277,21 @@ public class ScanCreditActivity extends AppCompatActivity  {
     @SuppressLint("StringFormatInvalid")
     public void updateSpinnerFromTextResults(FirebaseVisionText textresults) {
         List<FirebaseVisionText.TextBlock> blocks = textresults.getTextBlocks();
+
+        outerloop:
         for (FirebaseVisionText.TextBlock eachBlock : blocks) {
             for (FirebaseVisionText.Line eachLine : eachBlock.getLines()) {
                 for (FirebaseVisionText.Element eachElement : eachLine.getElements()) {
-                   // if (!displayList.contains(eachElement.getText()) && displayList.size() <= 9) {
+                    // if (!displayList.contains(eachElement.getText()) && displayList.size() <= 9) {
 
                     if (eachLine.getElements().size() == 3 && eachElement.getText().length() == 4) {
                         Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
-                        String voucherNo = eachLine.getText() ;//displayList.get(position);
+                        String voucherNo = eachLine.getText();//displayList.get(position);
                         // replace the space
-                        voucherNo = voucherNo.replaceAll("\\s", "") ;
+                        voucherNo = voucherNo.replaceAll("\\s", "");
 
 
-                        if (voucherNo.length() == 12){
+                        if (voucherNo.length() == 12) {
 
 
                             if (!hasLetter(voucherNo)) {
@@ -305,23 +304,24 @@ public class ScanCreditActivity extends AppCompatActivity  {
                                 // false affects the read in TextRecognitionProcessor.java class
                                 continue_scan = false;
                                 finish();
+                                break outerloop;
                             }
                         }
                     }
-                    if (( eachLine.getElements().size() == 3 || eachLine.getElements().size() == 4 ||eachLine.getElements().size() == 5)&&(eachElement.getText().length() == 2 || eachElement.getText().length() == 3
+                    if ((eachLine.getElements().size() == 3 || eachLine.getElements().size() == 4 || eachLine.getElements().size() == 5) && (eachElement.getText().length() == 2 || eachElement.getText().length() == 3
 
                             || eachElement.getText().length() == 4)) {
 
 
                         Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
-                        String voucherNo = eachLine.getText() ;//displayList.get(position);
+                        String voucherNo = eachLine.getText();//displayList.get(position);
 
 
                         // replace the space
-                        voucherNo = voucherNo.replaceAll("\\s", "") ;
+                        voucherNo = voucherNo.replaceAll("\\s", "");
 
 
-                        if (voucherNo.length() == 12 || voucherNo.length() == 14 || voucherNo.length() == 13){
+                        if (voucherNo.length() == 12 || voucherNo.length() == 14 || voucherNo.length() == 13) {
 
 
                             if (!hasLetter(voucherNo)) {
@@ -334,11 +334,11 @@ public class ScanCreditActivity extends AppCompatActivity  {
                                 // false affects the read in TextRecognitionProcessor.java class
                                 continue_scan = false;
                                 finish();
+                                break outerloop;
                             }
 
                         }
                     }
-
 
 
                 }
@@ -347,34 +347,20 @@ public class ScanCreditActivity extends AppCompatActivity  {
 
     }
 
-//    private boolean hasLetter(String number) {
-//
-//
-//        try {
-//            Integer.parseInt(number);
-//            return false;
-//        }
-//        catch(NumberFormatException e){
-//
-//            Toast.makeText(this, "Has Letter: " + number, Toast.LENGTH_SHORT).show();
-//            return true;
-//        }
-//    }
 
-    public boolean hasLetter(String input){
-        try{
+    public boolean hasLetter(String input) {
+        try {
             Long num = Long.parseLong(input);
 
             Toast.makeText(this, "Has Number Only: " + num, Toast.LENGTH_SHORT).show();
 
 
             return false;
-        }catch(ParseException e){
+        } catch (ParseException e) {
             Toast.makeText(this, "Has Letter: " + input, Toast.LENGTH_SHORT).show();
 
             return true;
-        }
-        catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
 
             Toast.makeText(this, "Has Letter: " + input, Toast.LENGTH_SHORT).show();
             return true;
@@ -394,7 +380,7 @@ public class ScanCreditActivity extends AppCompatActivity  {
                         new String[]{Manifest.permission.CALL_PHONE},
                         MY_PERMISSIONS_REQUEST_CALL_PHONE);
 
-            }else {
+            } else {
                 startActivity(dial);
             }
 
@@ -403,139 +389,4 @@ public class ScanCreditActivity extends AppCompatActivity  {
         }
     }
 
-    /*
-     * Turning On flash
-     */
-//    private void turnOnFlash() {
-//        if (!isFlashOn) {
-//            if (camera == null || params == null) {
-//                return;
-//            }
-//            // play sound
-//          //  playSound();
-//
-//            params = camera.getParameters();
-//            params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-//            camera.setParameters(params);
-//            camera.startPreview();
-//            isFlashOn = true;
-//
-//            // changing button/switch image
-//
-//        }
-//
-//    }
-
-    /*
-     * Turning Off flash
-     */
-//    private void turnOffFlash() {
-//        if (isFlashOn) {
-//            if (camera == null || params == null) {
-//                return;
-//            }
-//            // play sound
-//            //playSound();
-//
-//            params = camera.getParameters();
-//            params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-//            camera.setParameters(params);
-//            camera.stopPreview();
-//            isFlashOn = false;
-//
-//            // changing button/switch image
-//        }
-//    }
-
-    /*
-     * Playing sound will play button toggle sound on flash on / off
-     */
-//    private void playSound() {
-//        if (isFlashOn) {
-//            mp = MediaPlayer.create(ScanCreditActivity.this, R.raw.light_switch_off);
-//        } else {
-//            mp = MediaPlayer.create(ScanCreditActivity.this, R.raw.light_switch_on);
-//        }
-//        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//
-//            @Override
-//            public void onCompletion(MediaPlayer mp) {
-//                // TODO Auto-generated method stub
-//                mp.release();
-//            }
-//        });
-//        mp.start();
-//    }
-//    // on button telikom item clicked it brings up a menu options
-//    // to choose other services such as esi pay and tok combo
-//    public void angleMenu(Context context){
-//        AllAngleExpandableButton button = (AllAngleExpandableButton)findViewById(R.id.button_expandable);
-//        final List<ButtonData> buttonDatas = new ArrayList<>();
-//
-//        int[] draw = {R.drawable.ic_phone_android_black_24dp, R.drawable.ic_power_black_24dp,
-//                R.drawable.ic_phone_android_black_24dp, R.drawable.download};
-//
-//        for (int i = 0; i < draw.length; i++) {
-//            ButtonData buttonData = (ButtonData) ButtonData.buildIconButton(this,draw[i], 5);
-//            buttonDatas.add(buttonData);
-//        }
-//        button.setButtonDatas(buttonDatas);
-//
-//        button.setButtonEventListener(new ButtonEventListener() {
-//            @Override
-//            public void onButtonClicked(int index) {
-//                //do whatever you want,the param index is counted from startAngle to endAngle,
-//                //the value is from 1 to buttonCount - 1(buttonCount if aebIsSelectionMode=true)
-//                if (index == 1){
-//
-//                    startActivity(new Intent(ScanCreditActivity.this, EsiPayActivity.class));
-//                    Toast.makeText(ScanCreditActivity.this, "New", Toast.LENGTH_SHORT).show();
-//                }
-//                if (index == 2){
-//
-//                    startActivity(new Intent(ScanCreditActivity.this, MainActivity.class));
-//
-//
-//                    Toast.makeText(ScanCreditActivity.this, "Requested", Toast.LENGTH_SHORT).show();
-//                }
-//
-//
-//                if (index == 3){
-//                    Toast.makeText(ScanCreditActivity.this, "Completed", Toast.LENGTH_SHORT).show();
-//                    startActivity(new Intent(ScanCreditActivity.this, BemobileDataActivity.class));
-//
-//
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onExpand() {
-//
-//            }
-//
-//            @Override
-//            public void onCollapse() {
-//
-//            }
-//        });
-//    }
-
-//
-//    @Override
-//    public void onItemClick(int position) {
-//        Log.d(TAG, "onItemClick: On click entered position"+ position+1);
-//
-//        Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
-//        String voucherNo = displayList.get(position);
-//
-//        voucherNo = voucherNo.replaceAll("\\s", "") ;
-//
-//        String code = "*121*"+voucherNo+"#";
-//
-//        Toast.makeText(this, code, Toast.LENGTH_SHORT).show();
-//
-//        call_ussd(code);
-//
-//    }
 }

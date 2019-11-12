@@ -7,18 +7,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="100"
-    android:background="@drawable/back_blur"
+    android:background="@drawable/path_81"
     android:keepScreenOn="true"
     tools:context=".ScanCreditActivity"
     android:orientation="vertical">
 
 
-    <ImageView
+    <TextView
         android:layout_width="399dp"
         android:layout_height="64dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:text="Scan Voucher Number"
+        android:gravity="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
         android:src="@drawable/scan_voucher_number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,10 +53,18 @@
     </com.synarc.app.datatopup.ML_Kit_Classes.CameraSourcePreview>>
 
 
-
-
-
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Scanner Works With: DIGICEL, BEMOBILE AND TELIKOM"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Preview"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="6dp" />
 
 
 </android.support.constraint.ConstraintLayout>

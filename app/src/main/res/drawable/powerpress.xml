@@ -2,10 +2,10 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_pressed="true"
-        android:drawable="@drawable/png_power_press" />
+        android:drawable="@drawable/png_power" />
 
     <item
-        android:drawable="@drawable/png_power" />
+        android:drawable="@drawable/png_power_default" />
 
 
 </selector>

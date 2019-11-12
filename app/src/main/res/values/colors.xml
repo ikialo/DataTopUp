@@ -6,8 +6,10 @@
     <color name="colorWhite">#77FFF9F9</color>
     <color name="colorWhiteET">#FFFFFF</color>
 
-    <color name="colorGreen">#A40BB112</color>
-    <color name="colorGreenOppacity">#A46FC071</color>
+    <color name="colorGreen">#F44336</color>
+    <color name="colorGreenOppacity">#6A770D06</color>
+    <color name="cardColor">#B9B9B9</color>
+
 
 
 </resources>
