@@ -2,14 +2,12 @@
 <resources>
     <color name="colorPrimary">#A504C0</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#CDDC39</color>
+    <color name="colorAccent">#FFC107</color>
     <color name="colorWhite">#77FFF9F9</color>
-    <color name="colorWhiteET">#FFFFFF</color>
+    <color name="colorWhiteET">#F1EAEA</color>
 
     <color name="colorGreen">#F44336</color>
-    <color name="colorGreenOppacity">#6A770D06</color>
+    <color name="colorGreenOppacity">#FF7070</color>
     <color name="cardColor">#B9B9B9</color>
-
-
 
 </resources>

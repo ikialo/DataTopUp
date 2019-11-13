@@ -11,9 +11,10 @@
 
     <TextView
         android:fontFamily="sans-serif-light"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:id="@+id/name"
         android:textStyle="bold"
+        android:textColor="@color/colorGreen"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_gravity="center"
@@ -26,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="@color/cardColor"
+        android:background="@drawable/card_color"
         android:textColor="@color/colorWhiteET"
         android:text="Check Balance"
         app:layout_constraintBottom_toTopOf="@+id/grid"
@@ -43,7 +44,7 @@
         android:layout_height="wrap_content"
 
         android:layout_gravity="center"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:columnCount="2"
         android:foregroundGravity="bottom"
         android:rowCount="2"
@@ -59,7 +60,7 @@
             android:layout_gravity="center"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            app:cardBackgroundColor="@color/cardColor"
+            app:cardBackgroundColor="@color/colorWhiteET"
             app:cardCornerRadius="10dp">
 
             <LinearLayout
@@ -80,10 +81,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
                     android:gravity="center"
-                    android:textColor="@color/colorWhiteET"
+                    android:textColor="@color/colorGreen"
                     android:src="@drawable/scan_voucher_number"
                     android:text="TELIKOM"
-                    android:textSize="20sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
@@ -95,7 +96,7 @@
 
             android:layout_gravity="center"
             android:layout_marginBottom="2dp"
-            app:cardBackgroundColor="@color/cardColor"
+            app:cardBackgroundColor="@color/colorWhiteET"
             app:cardCornerRadius="10dp">
 
             <LinearLayout
@@ -116,10 +117,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
                     android:gravity="center"
-                    android:textColor="@color/colorWhiteET"
+                    android:textColor="@color/colorGreen"
                     android:src="@drawable/scan_voucher_number"
                     android:text="ESIPAY"
-                    android:textSize="20sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
@@ -133,7 +134,7 @@
             android:elevation="20dp"
 
 
-            app:cardBackgroundColor="@color/cardColor"
+            app:cardBackgroundColor="@color/colorWhiteET"
             app:cardCornerRadius="10dp">
 
             <LinearLayout
@@ -157,10 +158,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
                     android:gravity="center"
-                    android:textColor="@color/colorWhiteET"
+                    android:textColor="@color/colorGreen"
                     android:src="@drawable/scan_voucher_number"
                     android:text="SCAN"
-                    android:textSize="20sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -171,7 +172,7 @@
             android:layout_gravity="center"
 
             android:elevation="20dp"
-            app:cardBackgroundColor="@color/cardColor"
+            app:cardBackgroundColor="@color/colorWhiteET"
             app:cardCornerRadius="10dp">
 
             <LinearLayout
@@ -198,8 +199,8 @@
                     android:gravity="center"
                     android:src="@drawable/scan_voucher_number"
                     android:text="BMOBILE"
-                    android:textColor="@color/colorWhiteET"
-                    android:textSize="20sp" />
+                    android:textColor="@color/colorGreen"
+                    android:textSize="14sp" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
