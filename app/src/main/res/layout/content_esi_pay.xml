@@ -10,7 +10,7 @@
     tools:showIn="@layout/activity_esi_pay">
 
     <TextView
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorWhiteET"
         android:layout_marginTop="30dp"
         android:textSize="20sp"
         android:gravity="center"
@@ -50,7 +50,7 @@
 
 
     <TextView
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorWhiteET"
 
         android:layout_marginTop="15dp"
         android:textSize="20sp"

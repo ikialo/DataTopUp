@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/path_81"
+    android:background="@drawable/bg_2020_3"
     tools:context=".MainActivity">
 
 
@@ -16,6 +16,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
+
+    <ImageView
+        android:id="@+id/Synarc"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/rsz_logo"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginBottom="15dp"
+        android:text="Developed By Synarc Systems"
+        android:textColor="@color/colorWhite"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Synarc" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ContactUs"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp"
+    android:background="@drawable/bg_2020_3"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <EditText
+
+        android:padding="5dp"
+        android:id="@+id/name_contact"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/et_radius"
+        android:hint="Name"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="7dp" />
+
+    <EditText
+        android:visibility="invisible"
+        android:padding="5dp"
+
+        android:id="@+id/contact_email"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/et_radius"
+        android:hint="Name"
+        app:layout_constraintTop_toBottomOf="@+id/name_contact"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <EditText
+        android:id="@+id/contact_message"
+
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/et_radius"
+        android:gravity="top|left"
+        android:hint="Message"
+        android:padding="5dp"
+        app:layout_constraintCircleRadius="5dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.266"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contact_email" />
+
+    <Button
+        android:id="@+id/submit_contact"
+        android:onClick="submit_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/button_background"
+        android:text="submit"
+        android:textColor="@color/colorWhiteET"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contact_message" />
+
+
+    <ImageView
+        android:id="@+id/Synarc"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/rsz_logo"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginBottom="15dp"
+        android:text="Developed By Synarc Systems"
+        android:textColor="@color/colorWhite"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Synarc" />
+
+</android.support.constraint.ConstraintLayout>

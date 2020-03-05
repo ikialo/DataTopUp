@@ -1,165 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/path_81"
-    android:orientation="vertical"
-    tools:context=".Bemobile">
 
-    <TextView
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_gravity="center"
-        android:textSize="30dp"
-        android:gravity="center"
-
-
-        android:text="BEMOBILE Data \n Bundles"
-        android:layout_marginTop="80dp"
+    android:orientation="vertical">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
-    <LinearLayout
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="center"
+            android:background="@color/colorGreen"
+            android:gravity="center"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="Bemobile Bundle Options " />
+
+
+
+
+    </android.support.design.widget.AppBarLayout>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayoutb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?actionBarSize"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/colorAccent"
+        app:tabIndicatorHeight="4dp"
+        app:tabTextColor="@color/colorWhiteET"
+        app:tabBackground="@color/colorGreen"
+        app:tabMode="fixed">
+    </android.support.design.widget.TabLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPagerb"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <Button
-
-        android:textColor="@color/colorWhiteET"
-
-        android:layout_marginRight="2dp"
-        android:layout_marginLeft="2dp"
-        android:background="@drawable/button_background"
-        android:layout_marginBottom="2dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:id="@+id/k3_b"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="K3 - 500MB for 1 day"
-        />
-    <Button
-        android:textColor="@color/colorWhiteET"
-
-        android:layout_marginRight="2dp"
-        android:layout_marginLeft="2dp"
-        android:background="@drawable/button_background"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="2dp"
-        android:gravity="center"
-        android:id="@+id/k6_b"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="K6 - 1G for 3days"
-        />
-    <Button
-        android:textColor="@color/colorWhiteET"
-
-        android:layout_marginRight="2dp"
-        android:layout_marginLeft="2dp"
-        android:background="@drawable/button_background"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="2dp"
-
-        android:id="@+id/k12_b"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="K12 - 2G for 7 days"
-        />
-    <Button
-        android:textColor="@color/colorWhiteET"
-
-        android:layout_marginRight="2dp"
-        android:layout_marginLeft="2dp"
-        android:background="@drawable/button_background"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="2dp"
-        android:gravity="center"
-        android:id="@+id/k55_b"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="K55 - 10G for 30 days"
-        />
-    <Button
-        android:layout_marginRight="2dp"
-        android:layout_marginLeft="2dp"
-        android:background="@drawable/button_background"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="2dp"
-        android:gravity="center"
-        android:textColor="@color/colorWhiteET"
-
-        android:id="@+id/k110_b"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="K110 - 20G for 30 days"
-        />
-    <Button
-        android:layout_marginRight="2dp"
-        android:layout_marginLeft="2dp"
-        android:background="@drawable/button_background"
-        android:textSize="20sp"
-        android:layout_marginBottom="2dp"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:id="@+id/k150_b"
-        android:textColor="@color/colorWhiteET"
-
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="K150 - 30G for 30 days"
-        />
-
-    <!--<ImageView-->
-    <!--android:layout_marginTop="40dp"-->
-    <!--android:src="@drawable/telikom"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content" />-->
-
-    <!--<com.fangxu.allangleexpandablebutton.AllAngleExpandableButton-->
-    <!--android:id="@+id/button_expandable"-->
-    <!--android:layout_width="150dp"-->
-    <!--android:layout_height="200dp"-->
-    <!--android:layout_alignParentBottom="true"-->
-    <!--android:layout_centerHorizontal="true"-->
-
-    <!--android:layout_gravity="center"-->
-    <!--android:layout_marginTop="20dp"-->
-
-    <!--app:aebAnimDurationMillis="175"-->
-    <!--app:aebBlurBackground="true"-->
-    <!--app:aebBlurRadius="10"-->
-    <!--app:aebButtonElevation="4dp"-->
-    <!--app:aebButtonGapDp="15dp"-->
-    <!--app:aebEndAngleDegree="90"-->
-    <!--app:aebIsSelectionMode="false"-->
-    <!--app:aebMainButtonRotateAnimDurationMillis="1000"-->
-    <!--app:aebMainButtonRotateDegree="-360"-->
-    <!--app:aebMainButtonSizeDp="56dp"-->
-    <!--app:aebMainButtonTextColor="#ffff5656"-->
-    <!--app:aebMainButtonTextSizeSp="20dp"-->
-    <!--app:aebMaskBackgroundColor="@color/colorAccent"-->
-    <!--app:aebRippleColor="@color/colorAccent"-->
-    <!--app:aebRippleEffect="true"-->
-    <!--app:aebStartAngleDegree="90"-->
-    <!--app:aebSubButtonSizeDp="46dp"-->
-    <!--app:aebSubButtonTextColor="@color/colorAccent"-->
-    <!--app:aebSubButtonTextSizeSp="14dp"-->
-    <!--/>-->
-
-    </LinearLayout>
-
-
+    </android.support.v4.view.ViewPager>
 </LinearLayout>
+

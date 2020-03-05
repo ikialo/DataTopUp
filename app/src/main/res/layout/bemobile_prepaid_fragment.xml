@@ -20,7 +20,7 @@
         android:layout_gravity="end"
         android:gravity="end"
         android:textSize="14sp"
-        android:id="@+id/k3_prepaid_info_btn"
+        android:id="@+id/k3_prepaid_info_btn_b"
         android:layout_width="40dp"
         android:layout_height="40dp"
         />
@@ -69,10 +69,10 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:textSize="14sp"
-                            android:id="@+id/k3_prepaid"
+                            android:id="@+id/k3_prepaid_b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="K3 for 1 day pass"
+                            android:text="K3 for 1 day pack"
                             />
 
 
@@ -81,7 +81,7 @@
 
 
                     <TextView
-                        android:id="@+id/prepaid_3_info_tv"
+                        android:id="@+id/prepaid_3_info_tv_b"
                         android:visibility="gone"
                         android:layout_margin="5dp"
                         android:layout_weight="40"
@@ -125,10 +125,10 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:textSize="14sp"
-                            android:id="@+id/k6_prepaid"
+                            android:id="@+id/k6_prepaid_b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="K6 for 3 day pass"
+                            android:text="K6 for Weekend pack"
                             />
 
 
@@ -136,7 +136,7 @@
 
 
                     <TextView
-                        android:id="@+id/prepaid_6_info_tv"
+                        android:id="@+id/prepaid_6_info_tv_b"
                         android:visibility="gone"
                         android:layout_margin="5dp"
                         android:layout_weight="40"
@@ -181,10 +181,10 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:textSize="14sp"
-                            android:id="@+id/k9_prepaid"
+                            android:id="@+id/k9_prepaid_b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="K9 for 1 week pass"
+                            android:text="K9 for 1 week Pack"
                             />
 
 
@@ -192,7 +192,7 @@
 
 
                     <TextView
-                        android:id="@+id/prepaid_9_info_tv"
+                        android:id="@+id/prepaid_9_info_tv_b"
                         android:visibility="gone"
                         android:layout_margin="5dp"
                         android:layout_weight="40"
@@ -237,10 +237,10 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:textSize="14sp"
-                            android:id="@+id/k17_prepaid"
+                            android:id="@+id/k17_prepaid_b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="K17 for 1 fortnight pass"
+                            android:text="K17 for 1 fortnight pack"
                             />
 
 
@@ -249,7 +249,7 @@
 
 
                     <TextView
-                        android:id="@+id/prepaid_17_info_tv"
+                        android:id="@+id/prepaid_17_info_tv_b"
                         android:visibility="gone"
                         android:layout_margin="5dp"
                         android:layout_weight="40"
@@ -292,7 +292,7 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:textSize="14sp"
-                            android:id="@+id/k32_prepaid"
+                            android:id="@+id/k32_prepaid_b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="K32 for 1 month pass"
@@ -304,7 +304,7 @@
 
 
                     <TextView
-                        android:id="@+id/prepaid_32_info_tv"
+                        android:id="@+id/prepaid_32_info_tv_b"
                         android:visibility="gone"
                         android:layout_margin="5dp"
                         android:layout_weight="40"

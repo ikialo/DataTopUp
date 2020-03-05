@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         adapter = new TabAdapter(getSupportFragmentManager());
         adapter.addFragment(new TabData(), "Cheap Data ");
         adapter.addFragment(new PreepaidPassesTab(), "Prepaid Pass");
-        adapter.addFragment(new InternationCallTab(), "International Pass");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
     }

@@ -4,208 +4,497 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back_main"
+    android:background="@drawable/bg_2020_3"
     android:orientation="vertical"
     tools:context=".StartActivity">
 
+<!--    <Button-->
+<!--        android:id="@+id/share"-->
+<!--        android:layout_width="45dp"-->
+<!--        android:layout_height="45dp"-->
+<!--        android:layout_gravity="end"-->
+<!--        android:background="@drawable/ic_share_black_24dp"-->
+<!--        android:onClick="share"-->
+<!--        android:textColor="@color/colorWhiteET"-->
 
-    <TextView
-        android:fontFamily="sans-serif-light"
-        android:layout_marginTop="30dp"
-        android:id="@+id/name"
-        android:textStyle="bold"
-        android:textColor="@color/colorGreen"
+
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/scrollView2" />-->
+
+
+    <ScrollView
+
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="Top Up PG"
-        android:textSize="50sp"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="@drawable/card_color"
-        android:textColor="@color/colorWhiteET"
-        android:text="Check Balance"
-        app:layout_constraintBottom_toTopOf="@+id/grid"
-        app:layout_constraintTop_toBottomOf="@+id/name"
-        tools:ignore="MissingConstraints"
-        android:onClick="checkBal"
-        tools:layout_editor_absoluteX="5dp" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
-    <GridLayout
+            <!--    <android.support.v7.widget.CardView-->
+            <!--        android:layout_width="227dp"-->
+            <!--        android:layout_height="215dp"-->
+            <!--        android:layout_gravity="center"-->
+            <!--        android:elevation="20dp"-->
 
-        android:id="@+id/grid"
+
+            <!--        app:cardBackgroundColor="@color/colorWhiteET"-->
+            <!--        app:cardCornerRadius="10dp"-->
+            <!--        app:layout_constraintBottom_toTopOf="@+id/button"-->
+            <!--        app:layout_constraintEnd_toEndOf="parent"-->
+            <!--        app:layout_constraintStart_toStartOf="parent"-->
+            <!--        app:layout_constraintTop_toTopOf="parent">-->
+
+            <!--        <LinearLayout-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="161dp"-->
+            <!--            android:layout_gravity="center"-->
+
+            <!--            android:orientation="vertical">-->
+
+
+            <!--            <Button-->
+            <!--                android:id="@+id/pow"-->
+            <!--                android:layout_width="100dp"-->
+            <!--                android:layout_height="100dp"-->
+            <!--                android:layout_marginTop="10dp"-->
+            <!--                android:background="@drawable/cam_button"-->
+
+            <!--                android:onClick="Scan_Click" />-->
+
+            <!--            <TextView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="36dp"-->
+            <!--                android:gravity="center"-->
+            <!--                android:src="@drawable/scan_voucher_number"-->
+            <!--                android:text="SCAN"-->
+            <!--                android:textColor="@color/colorGreen"-->
+            <!--                android:textSize="14sp" />-->
+            <!--        </LinearLayout>-->
+            <!--    </android.support.v7.widget.CardView>-->
+
+
+            <!--    <Button-->
+            <!--        android:id="@+id/button"-->
+            <!--        android:layout_width="match_parent"-->
+            <!--        android:layout_height="wrap_content"-->
+            <!--        android:layout_margin="20dp"-->
+            <!--        android:layout_marginBottom="112dp"-->
+            <!--        android:background="@drawable/card_color"-->
+            <!--        android:onClick="checkBal"-->
+            <!--        android:text="Check Balance"-->
+            <!--        android:textColor="@color/colorWhiteET"-->
+            <!--        app:layout_constraintBottom_toTopOf="@+id/grid"-->
+            <!--        app:layout_constraintVertical_bias="0.181"-->
+            <!--        tools:ignore="MissingConstraints"-->
+            <!--        tools:layout_editor_absoluteX="16dp" />-->
+
+            <!--    <GridLayout-->
+
+            <!--        android:id="@+id/grid"-->
+            <!--        android:layout_width="wrap_content"-->
+            <!--        android:layout_height="wrap_content"-->
+
+            <!--        android:layout_gravity="center"-->
+            <!--        android:columnCount="2"-->
+            <!--        android:foregroundGravity="bottom"-->
+            <!--        android:rowCount="2"-->
+            <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--        app:layout_constraintEnd_toEndOf="parent"-->
+            <!--        app:layout_constraintStart_toStartOf="parent">-->
+
+
+            <!--        <android.support.v7.widget.CardView-->
+            <!--            android:layout_width="150dp"-->
+
+            <!--            android:layout_height="150dp"-->
+            <!--            android:layout_gravity="center"-->
+            <!--            android:layout_marginEnd="2dp"-->
+            <!--            android:layout_marginBottom="2dp"-->
+            <!--            app:cardBackgroundColor="@color/colorWhiteET"-->
+            <!--            app:cardCornerRadius="10dp">-->
+
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:gravity="center"-->
+            <!--                android:orientation="vertical">-->
+
+            <!--                <Button-->
+            <!--                    android:id="@+id/tel"-->
+            <!--                    android:layout_width="100dp"-->
+            <!--                    android:layout_height="100dp"-->
+            <!--                    android:background="@drawable/telikom_button"-->
+            <!--                    android:onClick="Telikom_Click" />-->
+
+            <!--                <TextView-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="36dp"-->
+            <!--                    android:gravity="center"-->
+            <!--                    android:src="@drawable/scan_voucher_number"-->
+            <!--                    android:text="TELIKOM"-->
+            <!--                    android:textColor="@color/colorGreen"-->
+            <!--                    android:textSize="14sp" />-->
+            <!--            </LinearLayout>-->
+
+            <!--        </android.support.v7.widget.CardView>-->
+
+
+            <!--        <android.support.v7.widget.CardView-->
+            <!--            android:layout_width="150dp"-->
+            <!--            android:layout_height="150dp"-->
+
+            <!--            android:layout_gravity="center"-->
+            <!--            android:layout_marginBottom="2dp"-->
+            <!--            app:cardBackgroundColor="@color/colorWhiteET"-->
+            <!--            app:cardCornerRadius="10dp">-->
+
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:gravity="center"-->
+            <!--                android:orientation="vertical">-->
+
+            <!--                <Button-->
+            <!--                    android:id="@+id/cam"-->
+            <!--                    android:layout_width="100dp"-->
+            <!--                    android:layout_height="100dp"-->
+            <!--                    android:background="@drawable/powerpress"-->
+            <!--                    android:onClick="EsiPay_Click" />-->
+
+            <!--                <TextView-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="36dp"-->
+            <!--                    android:gravity="center"-->
+            <!--                    android:src="@drawable/scan_voucher_number"-->
+            <!--                    android:text="ESIPAY"-->
+            <!--                    android:textColor="@color/colorGreen"-->
+            <!--                    android:textSize="14sp" />-->
+            <!--            </LinearLayout>-->
+
+            <!--        </android.support.v7.widget.CardView>-->
+
+
+            <!--        <android.support.v7.widget.CardView-->
+            <!--            android:layout_width="150dp"-->
+            <!--            android:layout_height="150dp"-->
+            <!--            android:layout_gravity="center"-->
+
+            <!--            android:elevation="20dp"-->
+            <!--            app:cardBackgroundColor="@color/colorWhiteET"-->
+            <!--            app:cardCornerRadius="10dp">-->
+
+            <!--            <LinearLayout-->
+
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="161dp"-->
+            <!--                android:layout_gravity="center"-->
+
+            <!--                android:orientation="vertical">-->
+
+
+            <!--                <Button-->
+            <!--                    android:id="@+id/bmob"-->
+            <!--                    android:layout_width="100dp"-->
+            <!--                    android:layout_height="100dp"-->
+            <!--                    android:layout_marginTop="10dp"-->
+            <!--                    android:background="@drawable/b_press"-->
+
+            <!--                    android:onClick="bmob_Click" />-->
+
+            <!--                <TextView-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="36dp"-->
+            <!--                    android:gravity="center"-->
+            <!--                    android:src="@drawable/scan_voucher_number"-->
+            <!--                    android:text="BMOBILE"-->
+            <!--                    android:textColor="@color/colorGreen"-->
+            <!--                    android:textSize="14sp" />-->
+            <!--            </LinearLayout>-->
+            <!--        </android.support.v7.widget.CardView>-->
+
+
+            <!--    </GridLayout>-->
+
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="128dp"
+                android:background="@drawable/custom_button1"
+                android:clickable="true"
+                android:onClick="EsiPay_Click"
+                android:src="@drawable/button_4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="120dp"
+                android:background="@drawable/custom_button1"
+                android:clickable="true"
+                android:onClick="bmob_Click"
+                android:src="@drawable/button_3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="120dp"
+                android:background="@drawable/custom_button1"
+                android:clickable="true"
+                android:onClick="Telikom_Click"
+                android:src="@drawable/button_2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_button1"
+                android:clickable="true"
+                android:onClick="Scan_Click"
+                android:src="@drawable/button_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/png_power"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/bmobile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/telikom"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:layout_marginStart="30dp"
+                android:background="@drawable/camera"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Voucher Scanner"
+                android:textColor="@color/colorWhiteET"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toTopOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/imageView6" />
+
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="@string/disc_scanner"
+                android:textColor="@color/colorWhiteET"
+                app:layout_constraintBottom_toTopOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/imageView6"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="16dp"
+                android:text="Telikom Bundles "
+                android:textColor="@color/colorWhiteET"
+                android:textSize="22dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView7"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Bemobile Bundles "
+                android:textColor="@color/colorWhiteET"
+                android:textSize="22dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="16dp"
+                android:text="Easi Pay Purchase"
+                android:textColor="@color/colorWhiteET"
+                android:textSize="22dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView9"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="@string/disc_telikom"
+
+                android:textColor="@color/colorWhiteET"
+                app:layout_constraintStart_toEndOf="@+id/imageView7"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+
+                android:text="@string/disc_telikom"
+                android:textColor="@color/colorWhiteET"
+                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="15dp"
+                android:text="@string/easipay_disc"
+                android:textColor="@color/colorWhiteET"
+                app:layout_constraintStart_toEndOf="@+id/imageView9"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+            " />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </ScrollView>
+
+<!--    <com.nightonke.boommenu.BoomMenuButton-->
+<!--        android:id="@+id/bmb"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/share"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+
+    <com.nightonke.boommenu.BoomMenuButton
+        android:id="@+id/bmb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:bmb_buttonEnum="ham"
+        app:bmb_buttonPlaceEnum="buttonPlace_ham_4"
+        app:bmb_piecePlaceEnum="piecePlace_ham_4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        android:layout_gravity="center"
+<!--        <android.support.design.widget.AppBarLayout-->
+<!--        android:id="@+id/appBarLayout2"-->
+<!--        android:layout_width="match_parent"-->
+
+<!--        android:layout_height="wrap_content"-->
+<!--        android:theme="@style/AppTheme.AppBarOverlay"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <android.support.v7.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+
+<!--            android:layout_width="401dp"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="@color/colorGreen"-->
+<!--            android:gravity="center"-->
+<!--            app:popupTheme="@style/AppTheme.PopupOverlay"-->
+<!--            app:title="Top Up PG " />-->
+
+
+<!--    </android.support.design.widget.AppBarLayout>-->
+
+    <ImageView
+        android:id="@+id/Synarc"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/rsz_logo"
+        android:layout_marginStart="20dp"
         android:layout_marginBottom="10dp"
-        android:columnCount="2"
-        android:foregroundGravity="bottom"
-        android:rowCount="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginBottom="15dp"
+        android:text="Developed By Synarc Systems"
+        android:textColor="@color/colorWhite"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Synarc" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="18dp"
+        android:contentDescription="Scan"
+        android:src="@drawable/bal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-
-        <android.support.v7.widget.CardView
-            android:layout_width="150dp"
-
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:layout_marginEnd="2dp"
-            android:layout_marginBottom="2dp"
-            app:cardBackgroundColor="@color/colorWhiteET"
-            app:cardCornerRadius="10dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/tel"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/telikom_button"
-                    android:onClick="Telikom_Click" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:gravity="center"
-                    android:textColor="@color/colorGreen"
-                    android:src="@drawable/scan_voucher_number"
-                    android:text="TELIKOM"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-
-        <android.support.v7.widget.CardView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-
-            android:layout_gravity="center"
-            android:layout_marginBottom="2dp"
-            app:cardBackgroundColor="@color/colorWhiteET"
-            app:cardCornerRadius="10dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/cam"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/powerpress"
-                    android:onClick="EsiPay_Click" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:gravity="center"
-                    android:textColor="@color/colorGreen"
-                    android:src="@drawable/scan_voucher_number"
-                    android:text="ESIPAY"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-
-        <android.support.v7.widget.CardView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:layout_marginEnd="2dp"
-            android:elevation="20dp"
-
-
-            app:cardBackgroundColor="@color/colorWhiteET"
-            app:cardCornerRadius="10dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="161dp"
-                android:layout_gravity="center"
-
-                android:orientation="vertical">
-
-
-                <Button
-                    android:id="@+id/pow"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/cam_button"
-
-                    android:onClick="Scan_Click" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:gravity="center"
-                    android:textColor="@color/colorGreen"
-                    android:src="@drawable/scan_voucher_number"
-                    android:text="SCAN"
-                    android:textSize="14sp" />
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-
-
-        <android.support.v7.widget.CardView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-
-            android:elevation="20dp"
-            app:cardBackgroundColor="@color/colorWhiteET"
-            app:cardCornerRadius="10dp">
-
-            <LinearLayout
-
-                android:layout_width="wrap_content"
-                android:layout_height="161dp"
-                android:layout_gravity="center"
-
-                android:orientation="vertical">
-
-
-                <Button
-                    android:id="@+id/bmob"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/b_press"
-
-                    android:onClick="bmob_Click" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:gravity="center"
-                    android:src="@drawable/scan_voucher_number"
-                    android:text="BMOBILE"
-                    android:textColor="@color/colorGreen"
-                    android:textSize="14sp" />
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-
-
-    </GridLayout>
-
+        app:maxImageSize="35dp" />
 
 </android.support.constraint.ConstraintLayout>

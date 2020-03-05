@@ -22,7 +22,8 @@ import com.synarc.app.datatopup.R;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-public class PreepaidPassesTab extends Fragment {
+public class PrepaidPassesTabBemobile extends Fragment {
+
 
     Button k3_prepaid_info_btn;
     TextView k3_prepaid_info_tv,k6_prepaid_info_tv,k9_prepaid_info_tv,k17_prepaid_info_tv,k32_prepaid_info_tv;
@@ -36,7 +37,7 @@ public class PreepaidPassesTab extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_prepaid, container, false);
+        return inflater.inflate(R.layout.bemobile_prepaid_fragment, container, false);
     }
 
     @Override
@@ -44,21 +45,21 @@ public class PreepaidPassesTab extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        k3_pre = getView().findViewById(R.id.k3_prepaid);
-        k6_pre = getView().findViewById(R.id.k6_prepaid);
-        k9_pre = getView().findViewById(R.id.k9_prepaid);
+        k3_pre = getView().findViewById(R.id.k3_prepaid_b);
+        k6_pre = getView().findViewById(R.id.k6_prepaid_b);
+        k9_pre = getView().findViewById(R.id.k9_prepaid_b);
 
-        k17_pre = getView().findViewById(R.id.k17_prepaid);
-        k32_pre = getView().findViewById(R.id.k32_prepaid);
+        k17_pre = getView().findViewById(R.id.k17_prepaid_b);
+        k32_pre = getView().findViewById(R.id.k32_prepaid_b);
 
 
 
-        k3_prepaid_info_btn = getView().findViewById(R.id.k3_prepaid_info_btn);
-        k3_prepaid_info_tv = getView().findViewById(R.id.prepaid_3_info_tv);
-        k6_prepaid_info_tv = getView().findViewById(R.id.prepaid_6_info_tv);
-        k9_prepaid_info_tv = getView().findViewById(R.id.prepaid_9_info_tv);
-        k17_prepaid_info_tv = getView().findViewById(R.id.prepaid_17_info_tv);
-        k32_prepaid_info_tv = getView().findViewById(R.id.prepaid_32_info_tv);
+        k3_prepaid_info_btn = getView().findViewById(R.id.k3_prepaid_info_btn_b);
+        k3_prepaid_info_tv = getView().findViewById(R.id.prepaid_3_info_tv_b);
+        k6_prepaid_info_tv = getView().findViewById(R.id.prepaid_6_info_tv_b);
+        k9_prepaid_info_tv = getView().findViewById(R.id.prepaid_9_info_tv_b);
+        k17_prepaid_info_tv = getView().findViewById(R.id.prepaid_17_info_tv_b);
+        k32_prepaid_info_tv = getView().findViewById(R.id.prepaid_32_info_tv_b);
 
 
         k3_prepaid_info_btn.setOnClickListener(new View.OnClickListener() {
@@ -90,34 +91,34 @@ public class PreepaidPassesTab extends Fragment {
         k3_pre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preSelect = (String) getString(R.string.bundle_k3_prepaid);
+                preSelect = (String) getString(R.string.bundle_k3b_prepaid);
                 areYouSure(k3_pre.getText().toString(), preSelect);            }
         });
         k6_pre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preSelect = (String) getString(R.string.bundle_k6_prepaid);
+                preSelect = (String) getString(R.string.bundle_k6b_prepaid);
                 areYouSure(k6_pre.getText().toString(), preSelect);
             }
         });
         k9_pre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preSelect = (String) getString(R.string.bundle_k9_prepaid);
+                preSelect = (String) getString(R.string.bundle_k9b_prepaid);
                 areYouSure(k9_pre.getText().toString(), preSelect);
             }
         });
         k17_pre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preSelect = (String) getString(R.string.bundle_17_prepaid);
+                preSelect = (String) getString(R.string.bundle_17b_prepaid);
                 areYouSure(k17_pre.getText().toString(), preSelect);
             }
         });
         k32_pre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preSelect = (String) getString(R.string.bundle_32_prepaid);
+                preSelect = (String) getString(R.string.bundle_32b_prepaid);
                 areYouSure(k32_pre.getText().toString(), preSelect);
             }
         });

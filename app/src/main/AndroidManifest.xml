@@ -18,7 +18,8 @@
         android:roundIcon="@drawable/icon_tup"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Bemobile"></activity>
+        <activity android:name=".ContactUs"></activity>
+        <activity android:name=".Bemobile" />
         <activity android:name=".StartActivity" />
         <activity android:name=".ScanCreditActivity" />
 

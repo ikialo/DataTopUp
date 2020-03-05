@@ -3,28 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/path_81"
+    android:background="@drawable/bg_2020_3"
     android:layout_height="match_parent"
     tools:context=".EsiPayActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.v7.widget.Toolbar
-            android:gravity="center"
+<!--    <android.support.design.widget.AppBarLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
 
-            android:layout_gravity="center"
-            app:title="Esi Pay "
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorGreen"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+<!--        android:theme="@style/AppTheme.AppBarOverlay">-->
 
-    </android.support.design.widget.AppBarLayout>
+<!--        <android.support.v7.widget.Toolbar-->
+<!--            android:gravity="center"-->
+
+<!--            android:layout_gravity="center"-->
+<!--            app:title="Esi Pay "-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:background="@color/colorGreen"-->
+<!--            app:popupTheme="@style/AppTheme.PopupOverlay" />-->
+
+<!--    </android.support.design.widget.AppBarLayout>-->
 
     <include
         android:id="@+id/include"
@@ -39,7 +41,7 @@
         app:layout_anchor="@+id/include"
 
 
-        app:layout_anchorGravity="start|bottom"
+        app:layout_anchorGravity="end|bottom"
         app:srcCompat="@drawable/ic_add_circle_black_24dp"
         tools:ignore="VectorDrawableCompat" />
 

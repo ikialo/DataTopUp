@@ -7,49 +7,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="100"
-    android:background="@drawable/path_81"
+    android:background="@drawable/bg_2020_3"
     android:keepScreenOn="true"
     tools:context=".ScanCreditActivity"
     android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
+<!--    <android.support.design.widget.AppBarLayout-->
+<!--        android:id="@+id/appBarLayout"-->
+<!--        android:layout_width="match_parent"-->
 
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+<!--        android:layout_height="wrap_content"-->
+<!--        android:theme="@style/AppTheme.AppBarOverlay"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+<!--        <android.support.v7.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
 
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_gravity="center"
-            android:background="@color/colorGreen"
-            android:gravity="center"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="Scanner " />
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="@color/colorGreen"-->
+<!--            android:gravity="center"-->
+<!--            app:popupTheme="@style/AppTheme.PopupOverlay"-->
+<!--            app:title="Scanner " />-->
 
-    </android.support.design.widget.AppBarLayout>
+<!--    </android.support.design.widget.AppBarLayout>-->
 
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="399dp"
+        android:layout_width="wrap_content"
         android:layout_height="64dp"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:src="@drawable/scan_voucher_number"
         android:text="Scan Voucher Number"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorWhiteET"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/Preview"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+        app:layout_constraintHorizontal_bias="0.422"
+        app:layout_constraintStart_toEndOf="@+id/imageView6" />
 
     <com.synarc.app.datatopup.ML_Kit_Classes.CameraSourcePreview
         android:id="@+id/Preview"
@@ -76,18 +76,38 @@
     </com.synarc.app.datatopup.ML_Kit_Classes.CameraSourcePreview>>
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="Scanner Works With: DIGICEL, BEMOBILE AND TELIKOM"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/camera"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/Synarc"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/rsz_logo"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Preview"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="6dp" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginBottom="15dp"
+        android:text="Developed By Synarc Systems"
+        android:textColor="@color/colorWhite"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Synarc" />
 
 
 </android.support.constraint.ConstraintLayout>
