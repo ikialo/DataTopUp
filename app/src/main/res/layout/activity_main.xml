@@ -1,154 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPageBack"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
 
-    <TextView
-        android:textColor="@color/colorPrimary"
-        android:layout_marginBottom="10dp"
-        android:layout_gravity="center"
-        android:textSize="30dp"
-        android:gravity="center"
-        android:text="Telikom Data Bundles"
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-
-        android:textColor="@color/colorWhite"
-
-        android:layout_marginRight="2dp"
-        android:layout_marginLeft="2dp"
-        android:background="@drawable/button_background"
-        android:layout_marginBottom="2dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:id="@+id/k3_"
+    android:orientation="vertical">
+    <include layout="@layout/app_bar" />
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="K3 - 500MB for 1 day"
-        />
-    <Button
-        android:textColor="@color/colorWhite"
-
-        android:layout_marginRight="2dp"
-        android:layout_marginLeft="2dp"
-        android:background="@drawable/button_background"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="2dp"
-        android:gravity="center"
-        android:id="@+id/k6_"
+        android:minHeight="?actionBarSize"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/colorAccent"
+        app:tabIndicatorHeight="4dp"
+        app:tabTextColor="@color/colorWhiteET"
+        app:tabBackground="@color/colorGreen"
+        app:tabMode="fixed">
+    </android.support.design.widget.TabLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="K6 - 1G for 3days"
-        />
-    <Button
-        android:textColor="@color/colorWhite"
-
-        android:layout_marginRight="2dp"
-        android:layout_marginLeft="2dp"
-        android:background="@drawable/button_background"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="2dp"
-
-        android:id="@+id/k12_"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="K12 - 2G for 7 days"
-        />
-    <Button
-        android:textColor="@color/colorWhite"
-
-        android:layout_marginRight="2dp"
-        android:layout_marginLeft="2dp"
-        android:background="@drawable/button_background"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="2dp"
-        android:gravity="center"
-        android:id="@+id/k55_"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="K55 - 10G for 30 days"
-        />
-    <Button
-        android:layout_marginRight="2dp"
-        android:layout_marginLeft="2dp"
-        android:background="@drawable/button_background"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="2dp"
-        android:gravity="center"
-        android:textColor="@color/colorWhite"
-
-        android:id="@+id/k110_"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="K110 - 20G for 30 days"
-        />
-    <Button
-        android:layout_marginRight="2dp"
-        android:layout_marginLeft="2dp"
-        android:background="@drawable/button_background"
-    android:textSize="20sp"
-        android:layout_marginBottom="2dp"
-    android:gravity="center"
-    android:layout_gravity="center"
-    android:id="@+id/k150_"
-             android:textColor="@color/colorWhite"
-
-
-        android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="K150 - 30G for 30 days"
-    />
-
-    <!--<ImageView-->
-        <!--android:layout_marginTop="40dp"-->
-        <!--android:src="@drawable/telikom"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content" />-->
-
-    <com.fangxu.allangleexpandablebutton.AllAngleExpandableButton
-        android:id="@+id/button_expandable"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-
-        app:aebAnimDurationMillis="175"
-        app:aebBlurBackground="true"
-        app:aebBlurRadius="10"
-        app:aebButtonElevation="4dp"
-        app:aebButtonGapDp="15dp"
-        app:aebEndAngleDegree="90"
-        app:aebIsSelectionMode="false"
-        app:aebMainButtonRotateAnimDurationMillis="1000"
-        app:aebMainButtonRotateDegree="-360"
-        app:aebMainButtonSizeDp="56dp"
-        app:aebMainButtonTextColor="#ffff5656"
-        app:aebMainButtonTextSizeSp="20dp"
-        app:aebMaskBackgroundColor="@color/colorAccent"
-        app:aebRippleColor="@color/colorAccent"
-        app:aebRippleEffect="true"
-        app:aebStartAngleDegree="90"
-        app:aebSubButtonSizeDp="46dp"
-        app:aebSubButtonTextColor="@color/colorAccent"
-        app:aebSubButtonTextSizeSp="14dp"
-      />
-
-
-
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
 </LinearLayout>
+

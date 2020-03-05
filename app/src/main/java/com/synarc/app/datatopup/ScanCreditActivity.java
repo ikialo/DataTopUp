@@ -9,7 +9,9 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.hardware.Camera;
 import android.media.MediaPlayer;
+import android.net.ParseException;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -40,7 +42,7 @@ import java.security.Policy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScanCreditActivity extends AppCompatActivity implements ResultAdapter.OnItemClickListener {
+public class ScanCreditActivity extends AppCompatActivity {
 
     private static final String TAG = "LauncherActivity";
     private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 358;
@@ -50,13 +52,15 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
     private RecyclerView resultSpinner;// To display the results recieved from Firebase MLKit
     private static final int PERMISSION_REQUESTS = 1; // to handle the runtime permissions
     public List<String> displayList; // to manage the adapter of the results recieved
-    private ResultAdapter displayAdapter; // adapter bound with the result recycler view ---> Contains a simple textview with background
+    // private ResultAdapter displayAdapter; // adapter bound with the result recycler view ---> Contains a simple textview with background
     private LinearLayout resultContainer;// just another layout to maintain the symmetry
     public Button capture;
     private String ussd_code;
     private Intent dial;
+    private char[] voucher;
+    int voucher_index = 0;
 
-    private Button btnSwitch;
+    public boolean continue_scan = true;
 
 
     private android.hardware.Camera camera;
@@ -73,7 +77,7 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
 
         xmlViews();
 
-        initializeView();
+        // initializeView();
 
         chechFlash();
 
@@ -82,19 +86,6 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
         /*
          * Switch button click event to toggle flash on/off
          */
-        btnSwitch.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (isFlashOn) {
-                    // turn off flash
-                    turnOffFlash();
-                } else {
-                    // turn on flash
-                    turnOnFlash();
-                }
-            }
-        });
 
 
         if (preview == null) {
@@ -109,13 +100,14 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
         } else {
             getRuntimePermissions();
         }
-        angleMenu(this);
-        capture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startCameraSource();
-            }
-        });
+        // angleMenu(this);
+//        capture.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startCameraSource();
+//            }
+//        });
+
 
     }
 
@@ -154,7 +146,6 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
     }
 
 
-
     // Actual code to start the camera
     private void startCameraSource() {
         if (cameraSource != null) {
@@ -165,7 +156,7 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
                 if (graphicOverlay == null) {
                     Log.d(TAG, "startCameraSource resume: graphOverlay is null ");
                 }
-                preview.start(cameraSource,graphicOverlay);
+                preview.start(cameraSource, graphicOverlay);
             } catch (IOException e) {
                 Log.d(TAG, "startCameraSource : Unable to start camera source." + e.getMessage());
                 cameraSource.release();
@@ -180,6 +171,7 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
         super.onResume();
         startCameraSource();
     }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -195,31 +187,33 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
     }
 
 
-    @SuppressLint("StringFormatInvalid")
-    private void initializeView() {
-
-        // intializing views
-        displayList = new ArrayList<>();
-        resultSpinner.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        displayAdapter = new ResultAdapter(this, displayList);
-        displayAdapter.setOnItemClickListener(this);
-        resultSpinner.setAdapter(displayAdapter);
-        resultContainer.getLayoutParams().height = (int) (Resources.getSystem().getDisplayMetrics().heightPixels * 0.65);
-
-    }
+//    @SuppressLint("StringFormatInvalid")
+//    private void initializeView() {
+//
+//        // intializing views
+//        displayList = new ArrayList<>();
+//        resultSpinner.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+//      //  displayAdapter = new ResultAdapter(this, displayList);
+//        Log.d(TAG, "initializeView: On click listener set");
+//      //  displayAdapter.setOnItemClickListener(ScanCreditActivity.this);
+//      //  resultSpinner.setAdapter(displayAdapter);
+//        resultContainer.getLayoutParams().height = (int) (Resources.getSystem().getDisplayMetrics().heightPixels * 0.65);
+//
+//    }
 
     private void xmlViews() {
         // getting views from the xml
 
-        resultContainer = findViewById(R.id.resultsContainer);
-        resultSpinner = findViewById(R.id.results_spinner);
-        preview =  findViewById(R.id.Preview);
+        //resultContainer = findViewById(R.id.resultsContainer);
+        //  resultSpinner = findViewById(R.id.results_spinner);
+        preview = findViewById(R.id.Preview);
         graphicOverlay = findViewById(R.id.Overlay);
-        capture = findViewById(R.id.capture);
+        //  capture = findViewById(R.id.capture);
         // flash switch button
-        btnSwitch =  findViewById(R.id.flash);
+        // btnSwitch =  findViewById(R.id.flash);
     }
- // Function to check if all permissions given by the user
+
+    // Function to check if all permissions given by the user
     private boolean allPermissionsGranted() {
         for (String permission : getRequiredPermissions()) {
             if (!isPermissionGranted(this, permission)) {
@@ -270,7 +264,6 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
         try {
 
 
-
             cameraSource.setMachineLearningFrameProcessor(new TextRecognitionProcessor(this));
 
         } catch (Exception e) {
@@ -284,70 +277,101 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
     @SuppressLint("StringFormatInvalid")
     public void updateSpinnerFromTextResults(FirebaseVisionText textresults) {
         List<FirebaseVisionText.TextBlock> blocks = textresults.getTextBlocks();
+
+        outerloop:
         for (FirebaseVisionText.TextBlock eachBlock : blocks) {
             for (FirebaseVisionText.Line eachLine : eachBlock.getLines()) {
                 for (FirebaseVisionText.Element eachElement : eachLine.getElements()) {
-                   // if (!displayList.contains(eachElement.getText()) && displayList.size() <= 9) {
+                    // if (!displayList.contains(eachElement.getText()) && displayList.size() <= 9) {
 
-                    if (eachLine.getElements().size() == 3) {
-                        if (eachElement.getText().length() == 4) {
+                    if (eachLine.getElements().size() == 3 && eachElement.getText().length() == 4) {
+                        Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
+                        String voucherNo = eachLine.getText();//displayList.get(position);
+                        // replace the space
+                        voucherNo = voucherNo.replaceAll("\\s", "");
 
-                          //  String number = eachLine.getText();
+
+                        if (voucherNo.length() == 12) {
 
 
+                            if (!hasLetter(voucherNo)) {
+
+                                String code = "*121*" + voucherNo + "#";
+
+                                Toast.makeText(this, code, Toast.LENGTH_LONG).show();
+                                call_ussd(code);
+                                // continue scan variable is used as a public variable so  setting it to
+                                // false affects the read in TextRecognitionProcessor.java class
+                                continue_scan = false;
+                                finish();
+                                break outerloop;
+                            }
+                        }
+                    }
+                    if ((eachLine.getElements().size() == 3 || eachLine.getElements().size() == 4 || eachLine.getElements().size() == 5) && (eachElement.getText().length() == 2 || eachElement.getText().length() == 3
+
+                            || eachElement.getText().length() == 4)) {
 
 
-//                            number = number.replaceAll("\\s", "") ;
-//
-//
-//                            for (int p = 0; p < number.length() ; p++){
-//
-//                                if (Character.isDigit(number.charAt(p))){
-//
-//                                }
-//
-//                            }
+                        Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
+                        String voucherNo = eachLine.getText();//displayList.get(position);
 
-                            displayList.add(eachLine.getText());
 
-                            Log.d(TAG, "updateSpinnerFromTextResults: " + eachElement.getText());
+                        // replace the space
+                        voucherNo = voucherNo.replaceAll("\\s", "");
+
+
+                        if (voucherNo.length() == 12 || voucherNo.length() == 14 || voucherNo.length() == 13) {
+
+
+                            if (!hasLetter(voucherNo)) {
+                                String code = "*121*" + voucherNo + "#";
+
+                                Toast.makeText(this, code, Toast.LENGTH_LONG).show();
+
+                                call_ussd(code);
+                                // continue scan variable is used as a public variable so  setting it to
+                                // false affects the read in TextRecognitionProcessor.java class
+                                continue_scan = false;
+                                finish();
+                                break outerloop;
+                            }
+
                         }
                     }
 
 
-                   // }
                 }
             }
         }
 
-        displayAdapter.notifyDataSetChanged();
     }
 
 
-    @Override
-    public void onItemClick(int position) {
+    public boolean hasLetter(String input) {
+        try {
+            Long num = Long.parseLong(input);
 
-       String voucherNo = displayList.get(position);
-
-        voucherNo = voucherNo.replaceAll("\\s", "") ;
-
-        String code = "*121*"+voucherNo+"#";
-
-        Toast.makeText(this, code, Toast.LENGTH_SHORT).show();
-
-        call_ussd(code);
+            Toast.makeText(this, "Has Number Only: " + num, Toast.LENGTH_SHORT).show();
 
 
+            return false;
+        } catch (ParseException e) {
+            Toast.makeText(this, "Has Letter: " + input, Toast.LENGTH_SHORT).show();
+
+            return true;
+        } catch (NumberFormatException e) {
+
+            Toast.makeText(this, "Has Letter: " + input, Toast.LENGTH_SHORT).show();
+            return true;
+        }
     }
 
     public void call_ussd(String code) {
         try {
 
             ussd_code = URLEncoder.encode(code, "UTF-8");
-
-
             dial = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + ussd_code));
-
             //check if permission is granted
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
 
@@ -356,7 +380,7 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
                         new String[]{Manifest.permission.CALL_PHONE},
                         MY_PERMISSIONS_REQUEST_CALL_PHONE);
 
-            }else {
+            } else {
                 startActivity(dial);
             }
 
@@ -364,124 +388,5 @@ public class ScanCreditActivity extends AppCompatActivity implements ResultAdapt
             e.printStackTrace();
         }
     }
-
-    /*
-     * Turning On flash
-     */
-    private void turnOnFlash() {
-        if (!isFlashOn) {
-            if (camera == null || params == null) {
-                return;
-            }
-            // play sound
-          //  playSound();
-
-            params = camera.getParameters();
-            params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-            camera.setParameters(params);
-            camera.startPreview();
-            isFlashOn = true;
-
-            // changing button/switch image
-
-        }
-
-    }
-
-    /*
-     * Turning Off flash
-     */
-    private void turnOffFlash() {
-        if (isFlashOn) {
-            if (camera == null || params == null) {
-                return;
-            }
-            // play sound
-            //playSound();
-
-            params = camera.getParameters();
-            params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-            camera.setParameters(params);
-            camera.stopPreview();
-            isFlashOn = false;
-
-            // changing button/switch image
-        }
-    }
-
-    /*
-     * Playing sound will play button toggle sound on flash on / off
-     */
-//    private void playSound() {
-//        if (isFlashOn) {
-//            mp = MediaPlayer.create(ScanCreditActivity.this, R.raw.light_switch_off);
-//        } else {
-//            mp = MediaPlayer.create(ScanCreditActivity.this, R.raw.light_switch_on);
-//        }
-//        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//
-//            @Override
-//            public void onCompletion(MediaPlayer mp) {
-//                // TODO Auto-generated method stub
-//                mp.release();
-//            }
-//        });
-//        mp.start();
-//    }
-    // on button telikom item clicked it brings up a menu options
-    // to choose other services such as esi pay and tok combo
-    public void angleMenu(Context context){
-        AllAngleExpandableButton button = (AllAngleExpandableButton)findViewById(R.id.button_expandable);
-        final List<ButtonData> buttonDatas = new ArrayList<>();
-
-        int[] draw = {R.drawable.ic_phone_android_black_24dp, R.drawable.ic_power_black_24dp,
-                R.drawable.telikom, R.drawable.download};
-
-        for (int i = 0; i < draw.length; i++) {
-            ButtonData buttonData = (ButtonData) ButtonData.buildIconButton(this,draw[i], 5);
-            buttonDatas.add(buttonData);
-        }
-        button.setButtonDatas(buttonDatas);
-
-        button.setButtonEventListener(new ButtonEventListener() {
-            @Override
-            public void onButtonClicked(int index) {
-                //do whatever you want,the param index is counted from startAngle to endAngle,
-                //the value is from 1 to buttonCount - 1(buttonCount if aebIsSelectionMode=true)
-                if (index == 1){
-
-                    startActivity(new Intent(ScanCreditActivity.this, EsiPayActivity.class));
-                    Toast.makeText(ScanCreditActivity.this, "New", Toast.LENGTH_SHORT).show();
-                }
-                if (index == 2){
-
-                    startActivity(new Intent(ScanCreditActivity.this, MainActivity.class));
-
-
-                    Toast.makeText(ScanCreditActivity.this, "Requested", Toast.LENGTH_SHORT).show();
-                }
-
-
-                if (index == 3){
-                    Toast.makeText(ScanCreditActivity.this, "Completed", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(ScanCreditActivity.this, BemobileDataActivity.class));
-
-
-
-                }
-            }
-
-            @Override
-            public void onExpand() {
-
-            }
-
-            @Override
-            public void onCollapse() {
-
-            }
-        });
-    }
-
 
 }

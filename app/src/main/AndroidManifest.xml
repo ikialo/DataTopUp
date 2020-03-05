@@ -5,21 +5,22 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
     <uses-feature android:name="android.hardware.camera" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_phone_android_black_24dp"
+        android:icon="@drawable/icon_tup"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_phone_android_black_24dp"
+        android:roundIcon="@drawable/icon_tup"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BemobileDataActivity"></activity>
+        <activity android:name=".ContactUs"></activity>
+        <activity android:name=".Bemobile" />
+        <activity android:name=".StartActivity" />
         <activity android:name=".ScanCreditActivity" />
 
         <meta-data

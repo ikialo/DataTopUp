@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_2020_3"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+
+
+    <Button
+
+        android:textColor="@color/colorWhiteET"
+        android:layout_margin="4dp"
+        android:background="@drawable/ic_info_outline_black_24dp"
+
+        android:layout_gravity="end"
+        android:gravity="end"
+        android:textSize="14sp"
+        android:id="@+id/k3_prepaid_info_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        />
+
+
+    <ScrollView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.CardView
+                android:layout_margin="3dp"
+                app:cardBackgroundColor="@color/colorWhiteET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:weightSum="100"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:weightSum="100"
+                        android:layout_height="wrap_content">
+
+                        <Button
+
+                            android:textColor="@color/colorWhiteET"
+                            android:layout_weight="15"
+
+                            android:layout_margin="4dp"
+                            android:background="@drawable/button_background"
+
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textSize="14sp"
+                            android:id="@+id/k3_prepaid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="K3 for 1 day pass"
+                            />
+
+
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/prepaid_3_info_tv"
+                        android:visibility="gone"
+                        android:layout_margin="5dp"
+                        android:layout_weight="40"
+                        android:text="10 mins/10 sms onnet, 10 mins/10 sms offnet 100MB, Vaild for 1 day"
+                        android:textSize="13sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_margin="3dp"
+                app:cardBackgroundColor="@color/colorWhiteET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:weightSum="100"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:weightSum="100"
+                        android:layout_height="wrap_content">
+
+                        <Button
+
+                            android:textColor="@color/colorWhiteET"
+                            android:layout_weight="15"
+
+                            android:layout_margin="4dp"
+                            android:background="@drawable/button_background"
+
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textSize="14sp"
+                            android:id="@+id/k6_prepaid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="K6 for 3 day pass"
+                            />
+
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/prepaid_6_info_tv"
+                        android:visibility="gone"
+                        android:layout_margin="5dp"
+                        android:layout_weight="40"
+                        android:text="20 mins/20 sms onnet, 20 mins/20 sms offnet 200MB, Vaild for 3 day"
+                        android:textSize="13sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_margin="3dp"
+                app:cardBackgroundColor="@color/colorWhiteET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:weightSum="100"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:weightSum="100"
+                        android:layout_height="wrap_content">
+
+                        <Button
+
+                            android:textColor="@color/colorWhiteET"
+                            android:layout_weight="15"
+
+                            android:layout_margin="4dp"
+                            android:background="@drawable/button_background"
+
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textSize="14sp"
+                            android:id="@+id/k9_prepaid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="K9 for 1 week pass"
+                            />
+
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/prepaid_9_info_tv"
+                        android:visibility="gone"
+                        android:layout_margin="5dp"
+                        android:layout_weight="40"
+                        android:text="30 mins/30 sms onnet, 30 mins/30 sms offnet 300MB, Vaild for 7 day"
+                        android:textSize="13sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_margin="3dp"
+                app:cardBackgroundColor="@color/colorWhiteET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:weightSum="100"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:weightSum="100"
+                        android:layout_height="wrap_content">
+
+                        <Button
+
+                            android:textColor="@color/colorWhiteET"
+                            android:layout_weight="15"
+
+                            android:layout_margin="4dp"
+                            android:background="@drawable/button_background"
+
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textSize="14sp"
+                            android:id="@+id/k17_prepaid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="K17 for 1 fortnight pass"
+                            />
+
+
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/prepaid_17_info_tv"
+                        android:visibility="gone"
+                        android:layout_margin="5dp"
+                        android:layout_weight="40"
+                        android:text="50 mins/50 sms onnet, 50 mins/50 sms offnet 500MB, Vaild for 14 day"
+                        android:textSize="13sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_margin="3dp"
+                app:cardBackgroundColor="@color/colorWhiteET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:weightSum="100"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:weightSum="100"
+                        android:layout_height="wrap_content">
+
+                        <Button
+
+                            android:textColor="@color/colorWhiteET"
+                            android:layout_weight="15"
+
+                            android:layout_margin="4dp"
+                            android:background="@drawable/button_background"
+
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textSize="14sp"
+                            android:id="@+id/k32_prepaid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="K32 for 1 month pass"
+                            />
+
+
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/prepaid_32_info_tv"
+                        android:visibility="gone"
+                        android:layout_margin="5dp"
+                        android:layout_weight="40"
+                        android:text="Unlimited mins/sms onnet, 100 mins/100 sms offnet 1GB, Vaild for 30 day"
+                        android:textSize="13sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+    <!--<ImageView-->
+    <!--android:layout_marginTop="40dp"-->
+    <!--android:src="@drawable/telikom"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--<com.fangxu.allangleexpandablebutton.AllAngleExpandableButton-->
+    <!--android:id="@+id/button_expandable"-->
+    <!--android:layout_width="150dp"-->
+    <!--android:layout_height="200dp"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_centerHorizontal="true"-->
+
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_marginTop="20dp"-->
+
+    <!--app:aebAnimDurationMillis="175"-->
+    <!--app:aebBlurBackground="true"-->
+    <!--app:aebBlurRadius="10"-->
+    <!--app:aebButtonElevation="4dp"-->
+    <!--app:aebButtonGapDp="15dp"-->
+    <!--app:aebEndAngleDegree="90"-->
+    <!--app:aebIsSelectionMode="false"-->
+    <!--app:aebMainButtonRotateAnimDurationMillis="1000"-->
+    <!--app:aebMainButtonRotateDegree="-360"-->
+    <!--app:aebMainButtonSizeDp="56dp"-->
+    <!--app:aebMainButtonTextColor="#ffff5656"-->
+    <!--app:aebMainButtonTextSizeSp="20dp"-->
+    <!--app:aebMaskBackgroundColor="@color/colorAccent"-->
+    <!--app:aebRippleColor="@color/colorAccent"-->
+    <!--app:aebRippleEffect="true"-->
+    <!--app:aebStartAngleDegree="90"-->
+    <!--app:aebSubButtonSizeDp="46dp"-->
+    <!--app:aebSubButtonTextColor="@color/colorAccent"-->
+    <!--app:aebSubButtonTextSizeSp="14dp"-->
+    <!--/>-->
+
+
+
+</LinearLayout>
+
