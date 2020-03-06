@@ -26,7 +26,7 @@ public class TabData extends Fragment {
 
 
     private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE= 458;
-    Button k3,k6,k12, k55, k110, k150;
+    Button k3,k6,k12, k55, k110, k150, k30;
     String preSelect, ussd_code;
     Intent dial;
     @Override
@@ -65,6 +65,14 @@ public class TabData extends Fragment {
                 areYouSure(k12.getText().toString(), preSelect);
             }
         });
+
+        k30.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                preSelect = (String) getString(R.string.bundle_k30);
+                areYouSure(k30.getText().toString(), preSelect);
+            }
+        });
         k55.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +104,7 @@ public class TabData extends Fragment {
         k3 = getView().findViewById(R.id.k3_);
         k6 = getView().findViewById(R.id.k6_);
         k12 = getView().findViewById(R.id.k12_);
+        k30 = getView().findViewById(R.id.k30_);
         k55 = getView().findViewById(R.id.k55_);
         k110 = getView().findViewById(R.id.k110_);
         k150 = getView().findViewById(R.id.k150_);
