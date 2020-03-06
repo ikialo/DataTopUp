@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "992487698434",
+    "firebase_url": "https://client1-f721c.firebaseio.com",
+    "project_id": "client1-f721c",
+    "storage_bucket": "client1-f721c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:992487698434:android:13c1e65b93790d58",
+        "android_client_info": {
+          "package_name": "com.synarc.app.datatopup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "992487698434-i8ntoqa2rjk8k19huccq5g0tho6og0h0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.synarc.app.datatopup",
+            "certificate_hash": "1ef5990535477b74dcfbdd3553c28d7de150a071"
+          }
+        },
+        {
+          "client_id": "992487698434-mhp765vm571jnssqpviebn2ctet4vo7v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.synarc.app.datatopup",
+            "certificate_hash": "27926793033846217192b06adfdba68dfa0c8c57"
+          }
+        },
+        {
+          "client_id": "992487698434-2mvj0663i1mv6ae9v9tg255he0h2sr79.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBspSCj2ha_KrH04rp9Us26WsDW-_A3e2M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "992487698434-2mvj0663i1mv6ae9v9tg255he0h2sr79.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
