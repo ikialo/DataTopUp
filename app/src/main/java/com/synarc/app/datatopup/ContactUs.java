@@ -49,7 +49,7 @@ sendEmail(email.getText().toString(), name.getText().toString(), message.getText
     protected void sendEmail(String email_, String name_, String message_) {
         Log.i("Send email", "");
 
-        String[] TO = {"synarcsystems05@gmail.com"};
+        String[] TO = {"synarcsystems@gmail.com"};
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.setType("text/plain");
